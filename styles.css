@@ -1,79 +1,69 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('PortileSocial.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #ffffff;
-    display: flex; /* Use Flexbox on the body */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 100vh; /* Full height */
-    overflow: hidden; /* Prevent scrolling */
-}
+ body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('PortileSocial.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+        }
 
-.topbar {
-    background-color: rgba(51, 51, 51, 0.9); /* Semi-transparent topbar */
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    box-sizing: border-box;
-}
+        .topbar {
+            background-color: rgba(51, 51, 51, 0.9); /* Semi-transparent topbar */
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
 
-.logo h1 {
-    margin: 0;
-    font-size: 24px;
-    color: #00ccff;
-}
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #00ccff;
+        }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 18px;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
 
-.nav-links a:hover {
-    background-color: #00ccff;
-    color: #1e1e1e;
-}
+        .nav-links a:hover {
+            background-color: #00ccff;
+            color: #1e1e1e;
+        }
+
 
 .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    padding: 60px 20px; /* Default padding for home */
+    max-width: 1200px;
+    margin: 0 auto;
     box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5);
     color: #cccccc;
     border-radius: 10px;
-    top: 50%;
-    left: 50%;
     backdrop-filter: blur(5px);
-    transition: all 0.5s ease;
+    transition: all 0.5s ease; /* Transition for any size change */
     opacity: 0; /* Start hidden */
     visibility: hidden; /* Start hidden */
-    position: relative; /* Allow positioning relative to the parent */
-    margin: 25vh 0; /* 50% spacing from top and bottom */
+    height: auto;
 }
-
 
 .content.active {
     opacity: 1;
@@ -81,26 +71,10 @@ body {
     transition: opacity 0.5s ease, visibility 0s 0.5s; /* Fade in and out */
 }
 
-h2 {
-    font-size: 36px;
-    color: #00ccff;
-    margin: 0; /* Remove margin to keep it centered */
+#home.active {
+    padding: 60px 20px; /* Smaller size for the home page */
 }
 
-p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #cccccc;
-}
-
-.footer {
-    padding: 20px;
-    text-align: center;
-    font-size: 14px;
-    color: #ffffff;
-    background-color: rgba(51, 51, 51, 0.9); /* Semi-transparent background for the footer */
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    box-sizing: border-box;
+#about.active {
+    padding: 120px 20px; /* Larger size for the about page */
 }
