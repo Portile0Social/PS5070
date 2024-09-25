@@ -55,25 +55,26 @@ body {
 }
 
 .content {
-    display: flex; /* Use Flexbox */
-    flex-direction: column; /* Align items vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    padding: 20px; /* Padding around content */
-    max-width: 1200px;
-    width: 100%; /* Full width */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    max-width: 600px; /* Set maximum width */
+    width: 100%; /* Full width for the content */
+    height: 100%; /* Full height for the content */
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     color: #cccccc;
     border-radius: 10px;
-    backdrop-filter: blur(5px); /* Blur the background behind the content */
-    transition: all 0.5s ease; /* Transition for any size change */
+    backdrop-filter: blur(5px);
+    transition: all 0.5s ease;
     opacity: 0; /* Start hidden */
     visibility: hidden; /* Start hidden */
-    height: auto;
-    flex-grow: 1; /* Allow content to grow */
-    overflow: auto; /* Allow scrolling if content exceeds */
+    position: relative; /* Allow positioning relative to the parent */
+    margin: 25vh 0; /* 50% spacing from top and bottom */
 }
+
 
 .content.active {
     opacity: 1;
