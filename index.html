@@ -128,6 +128,15 @@
             cursor: pointer;
         }
 
+        .creepy-text {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease;
+            pointer-events: none; /* Ignore pointer events */
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 flex-direction: column;
@@ -176,6 +185,8 @@
         &copy; 2024 Portile Social. All rights reserved.
     </div>
 
+    <div id="creepyText" class="creepy-text">Something's watching you...</div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             function showPage(pageId) {
@@ -214,11 +225,33 @@
                 const footer = document.querySelector('.footer');
                 footer.style.bottom = '0'; // Move footer into view
             }, 100); // Delay to ensure it's set after page load
+
+            // Show creepy text when clicking
+            document.body.addEventListener('click', function() {
+                showCreepyText();
+            });
         });
 
         function hideFooter() {
             const footer = document.querySelector('.footer');
             footer.style.bottom = '-100px'; // Move the footer out of view
+        }
+
+        function showCreepyText() {
+            const creepyText = document.getElementById('creepyText');
+            creepyText.style.opacity = 1; // Fade in
+            creepyText.style.left = Math.random() * window.innerWidth + 'px';
+            creepyText.style.top = Math.random() * window.innerHeight + 'px';
+
+            setTimeout(() => {
+                creepyText.style.opacity = 0; // Fade out
+            }, 1500); // Stay visible for 1.5 seconds
+
+            // Optional: Reset position and opacity after fade out
+            setTimeout(() => {
+                creepyText.style.left = '';
+                creepyText.style.top = '';
+            }, 2000); // Reset after 2 seconds
         }
     </script>
 </body>
