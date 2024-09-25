@@ -34,6 +34,7 @@
 
         .nav-links {
             display: flex;
+            align-items: center; /* Vertically center the links */
         }
 
         .nav-links a {
@@ -41,10 +42,14 @@
             text-decoration: none;
             margin-left: 20px;
             font-size: 18px;
+            padding: 5px 10px; /* Add padding for clickable area */
+            border-radius: 4px; /* Rounded corners for buttons */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
         }
 
         .nav-links a:hover {
-            color: #00ccff; /* Light blue hover effect */
+            background-color: #00ccff; /* Light blue background on hover */
+            color: #1e1e1e; /* Dark text on hover */
         }
 
         .content {
