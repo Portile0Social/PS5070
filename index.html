@@ -10,15 +10,15 @@
             font-family: Arial, sans-serif;
             background-image: url('PortileSocial.jpeg');
             background-color: black;
-            background-size: fit;
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #ffffff;
-            scroll-behavior: smooth; /* Smooth scrolling */
-            position: relative; /* Added for positioning child elements */
-            height: 100vh; /* Full viewport height */
-            overflow: hidden; /* Hide overflow */
+            scroll-behavior: smooth;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
         }
 
         .topbar {
@@ -51,7 +51,7 @@
             text-decoration: none;
             margin-left: 20px;
             font-size: 18px;
-            padding: 8px 15px; /* Increased padding for a better touch target */
+            padding: 8px 15px;
             border-radius: 4px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
@@ -63,29 +63,28 @@
 
         .nav-links a.active {
             background-color: #00ccff;
-            color: #1e1e1e; /* Highlight active link */
+            color: #1e1e1e;
         }
 
         .content {
-            position: absolute; /* Position absolute for centering */
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Translate to actual center */
-            padding: 20px; /* Adjusted padding for top and sides */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
             max-width: 1200px;
-            box-sizing: border-box;
             background-color: rgba(0, 0, 0, 0.65);
             color: #cccccc;
             border-radius: 10px;
             backdrop-filter: blur(5px);
-            transition: opacity 0.5s ease, transform 0.5s ease; /* Added transform transition */
+            transition: opacity 0.5s ease, transform 0.5s ease;
             opacity: 0;
-            z-index: 500; /* Higher z-index to stay above background */
+            z-index: 500;
         }
 
         .content.active {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1); /* Reset transform on active */
+            transform: translate(-50%, -50%) scale(1);
         }
 
         h2 {
@@ -99,15 +98,9 @@
             color: #fcfafa;
         }
 
-        p1 {
-            font-size: 10px;
-            line-height: 2;
-            color: #fcfafa;   
-        }
-
         #mfp {
             font-size: 25px;
-            font-weight: bold; /* this should make bold?! */
+            font-weight: bold;
         }
 
         .footer {
@@ -118,9 +111,9 @@
             background-color: rgba(51, 51, 51, 0.9);
             position: fixed;
             width: 100%;
-            bottom: -100px; /* Start out of view */
+            bottom: -100px;
             box-sizing: border-box;
-            transition: bottom 0.5s ease; /* Smooth transition when hiding */
+            transition: bottom 0.5s ease;
         }
 
         .close-button {
@@ -138,14 +131,14 @@
         .close-button:hover {
             color: red;
         }
-        
+
         .creepy-text {
             position: absolute;
             color: red;
             font-size: 24px;
-            opacity: 0; /* Initially hidden */
+            opacity: 0;
             transition: opacity 0.5s ease;
-            pointer-events: none; /* Ignore pointer events */
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
@@ -156,7 +149,7 @@
 
             .nav-links a {
                 margin-left: 0;
-                margin-top: 10px; /* Space between links on mobile */
+                margin-top: 10px;
             }
 
             .topbar {
@@ -184,14 +177,12 @@
 
     <div id="about" class="content" role="document">
         <h2>What is Portile Social?</h2>
-        <p>Portile Social is an innovative platform to connect individuals with shared interests and ideas, promoting collaboration and inspiring innovation. We also offer a range of unblocked games, including favorites like Minecraft, allowing users to enjoy gaming without restrictions.</p>
-        <p1>This project is the Product of a passionate team of developers and thinkers who believe in Underground Next Level Exploits!</p1>
-        
+        <p>Portile Social is an innovative platform to connect individuals with shared interests and ideas, promoting collaboration and inspiring innovation.</p>
+        <p1>This project is the product of a passionate team of developers and thinkers.</p1>
+
         <h2>Meet The Visionaries</h2>
         <p id="mfp">Main Developer</p>
         <p>•Christian Michal high<br>•Xech Rust</p>
-        <p id="mfp">Concept Developers</p>
-        <p>•</p>
     </div>
 
     <div class="footer">
@@ -212,7 +203,7 @@
                 setTimeout(function() {
                     document.getElementById(pageId).classList.add('active');
                 }, 10);
-                
+
                 // Update active link
                 document.querySelectorAll('.nav-links a').forEach(link => {
                     link.classList.remove('active');
@@ -222,7 +213,6 @@
                 });
             }
 
-            // Event delegation for navigation links
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', function(event) {
                     event.preventDefault();
@@ -231,27 +221,17 @@
                 });
             });
 
-            // Display the home page by default
             showPage('home');
 
-            // Show footer on load
             setTimeout(() => {
                 const footer = document.querySelector('.footer');
-                footer.style.bottom = '0'; // Move footer into view
-            }, 100); // Delay to ensure it's set after page load
-
-            // Show creepy text at random intervals
-            setInterval(showCreepyText, getRandomInterval());
-
-            // Function to get a random interval between 5 and 15 seconds
-            function getRandomInterval() {
-                return Math.floor(Math.random() * (15000 - 5000 + 1)) + 5000; // 5000ms to 15000ms
-            }
+                footer.style.bottom = '0';
+            }, 100);
         });
 
         function hideFooter() {
             const footer = document.querySelector('.footer');
-            footer.style.bottom = '-100px'; // Move the footer out of view
+            footer.style.bottom = '-100px';
         }
 
         const creepyPhrases = [
@@ -271,23 +251,6 @@
             const creepyText = document.getElementById('creepyText');
             const randomPhrase = creepyPhrases[Math.floor(Math.random() * creepyPhrases.length)];
 
-            creepyText.textContent = randomPhrase; // Set random phrase
-            creepyText.style.opacity = 1; // Fade in
-            creepyText.style.top = Math.random() * 80 + 10 + 'vh'; // Random vertical position
-            creepyText.style.left = Math.random() * 80 + 10 + 'vw'; // Random horizontal position
-            
-            // Fade out after 3 seconds
-            setTimeout(() => {
-                creepyText.style.opacity = 0;
-            }, 3000);
-
-            // Restart the interval
-            setTimeout(() => {
-                showCreepyText(); // Show again after fade out
-            }, getRandomInterval());
-        }
-    </script>
-</body>
-</html>
-
-
+            creepyText.textContent = randomPhrase;
+            creepyText.style.opacity = 1;
+            creepyText.style.top = Math.random()
