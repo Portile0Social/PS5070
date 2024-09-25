@@ -16,7 +16,7 @@ function showPage(pageId) {
 
 function typeText(elementId, typingSpeed) {
     const textElement = document.getElementById(elementId);
-    const text = textElement.innerText; // Get the text content
+    const text = textElement.innerText.split(''); // Get the text content as an array of characters
     textElement.innerText = ''; // Clear the text element
     textElement.style.display = 'block'; // Show the text element
 
@@ -24,7 +24,7 @@ function typeText(elementId, typingSpeed) {
 
     function typeNextCharacter() {
         if (index < text.length) {
-            textElement.innerText += text.charAt(index); // Add the next character
+            textElement.innerText += text[index]; // Add the next character
             index++;
             setTimeout(typeNextCharacter, typingSpeed); // Call the function again after a delay
         }
