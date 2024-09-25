@@ -55,10 +55,10 @@ body {
 }
 
 .content {
-    position: absolute; /* Use absolute positioning */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust to center */
+    display: flex; /* Use Flexbox */
+    flex-direction: column; /* Align items vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
     padding: 20px; /* Padding around content */
     max-width: 1200px;
     width: 100%; /* Full width */
@@ -71,6 +71,8 @@ body {
     opacity: 0; /* Start hidden */
     visibility: hidden; /* Start hidden */
     height: auto;
+    flex-grow: 1; /* Allow content to grow */
+    overflow: auto; /* Allow scrolling if content exceeds */
 }
 
 .content.active {
