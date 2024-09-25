@@ -30,6 +30,9 @@ function typeText(elementId, typingSpeed) {
             textElement.innerText += text.charAt(index); // Add the next character
             index++;
             setTimeout(typeNextCharacter, typingSpeed); // Call the function again after a delay
+        } else {
+            // Add an extra space for spacing when typing is complete
+            textElement.innerText += ' '; 
         }
     }
 
