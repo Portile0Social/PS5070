@@ -8,45 +8,32 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #1e1e1e; /* Dark background */
+            background-image: url('PortileSocial.jpeg'); /* Set the logo as background image */
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent repetition */
+            background-attachment: fixed; /* Make the background fixed */
             color: #ffffff; /* Light text */
         }
 
         .topbar {
-            background-color: #333; /* Dark gray */
+            background-color: rgba(51, 51, 51, 0.8); /* Dark gray with transparency */
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 15px 20px;
             position: fixed;
             width: 100%;
             top: 0;
-            height: 80px; /* Set a fixed height */
             z-index: 1000;
             box-sizing: border-box;
-        }
-
-        .logo {
-            position: relative;
-            height: 100%;
-        }
-
-        .logo img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%; /* Cover the height of the topbar */
-            object-fit: cover; /* Ensure the image scales properly */
-            z-index: -1; /* Send the image behind the text */
         }
 
         .logo h1 {
             margin: 0;
             font-size: 24px;
             color: #00ccff; /* Light blue */
-            display: inline-block;
-            z-index: 1; /* Ensure text is above the image */
         }
 
         .nav-links {
@@ -74,6 +61,8 @@
             max-width: 1200px;
             margin: 0 auto;
             box-sizing: border-box;
+            background-color: rgba(30, 30, 30, 0.8); /* Dark background with transparency */
+            border-radius: 10px; /* Rounded corners for the content */
         }
 
         h2 {
@@ -92,7 +81,7 @@
             text-align: center;
             font-size: 14px;
             color: #666666;
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.8); /* Dark background with transparency */
             position: fixed;
             width: 100%;
             bottom: 0;
@@ -103,7 +92,6 @@
 <body>
     <div class="topbar">
         <div class="logo">
-            <img src="PortileSocial.jpeg" alt="Portile Social Logo">
             <h1>Portile Social</h1>
         </div>
         <div class="nav-links">
