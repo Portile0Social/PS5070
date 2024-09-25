@@ -1,13 +1,14 @@
 function showPage(pageId) {
+    // Get all content sections and remove active class
     var contents = document.querySelectorAll('.content');
     contents.forEach(function(content) {
-        content.classList.remove('active'); // Hide all content sections
+        content.classList.remove('active');
     });
 
+    // Add active class to the selected page with a delay for the opacity transition
     setTimeout(function() {
-        var currentPage = document.getElementById(pageId);
-        currentPage.classList.add('active'); // Show the selected page
-    }, 10);
+        document.getElementById(pageId).classList.add('active');
+    }, 10); // Small delay to ensure proper transitions
 }
 
 // Display the home page by default
