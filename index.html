@@ -18,27 +18,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 0 20px;
             position: fixed;
             width: 100%;
             top: 0;
+            height: 80px; /* Set a fixed height */
             z-index: 1000;
             box-sizing: border-box;
         }
 
+        .logo {
+            position: relative;
+            height: 100%;
+        }
+
         .logo img {
-            height: 50px; /* Adjust logo height */
-            margin-right: 10px; /* Add some space between logo and text */
             position: absolute;
-            top: 0px;
-           left: 0px;
+            top: 0;
+            left: 0;
+            height: 100%; /* Cover the height of the topbar */
+            object-fit: cover; /* Ensure the image scales properly */
+            z-index: -1; /* Send the image behind the text */
         }
 
         .logo h1 {
             margin: 0;
             font-size: 24px;
             color: #00ccff; /* Light blue */
-            display: inline; /* Keep logo and text on the same line */
+            display: inline-block;
+            z-index: 1; /* Ensure text is above the image */
         }
 
         .nav-links {
@@ -95,7 +103,7 @@
 <body>
     <div class="topbar">
         <div class="logo">
-            <img src="Portile0Social.jpeg" alt="Portile Social Logo">
+            <img src="PortileSocial.jpeg" alt="Portile Social Logo">
             <h1>Portile Social</h1>
         </div>
         <div class="nav-links">
