@@ -15,6 +15,9 @@
             background-attachment: fixed;
             color: #ffffff;
             scroll-behavior: smooth; /* Smooth scrolling */
+            position: relative; /* Added for positioning child elements */
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
         }
 
         .topbar {
@@ -63,9 +66,12 @@
         }
 
         .content {
+            position: absolute; /* Position absolute for centering */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Translate to actual center */
             padding: 20px; /* Adjusted padding for top and sides */
             max-width: 1200px;
-            margin: 0 auto;
             box-sizing: border-box;
             background-color: rgba(0, 0, 0, 0.5);
             color: #cccccc;
@@ -73,13 +79,12 @@
             backdrop-filter: blur(5px);
             transition: opacity 0.5s ease, transform 0.5s ease; /* Added transform transition */
             opacity: 0;
-            transform: translateY(20px); /* Slide-in effect */
-            margin-top: 50px; /* Adjusted margin to bring it closer to the top */
+            z-index: 500; /* Higher z-index to stay above background */
         }
 
         .content.active {
             opacity: 1;
-            transform: translateY(0); /* Reset transform on active */
+            transform: translate(-50%, -50%) scale(1); /* Reset transform on active */
         }
 
         h2 {
