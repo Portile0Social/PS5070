@@ -81,10 +81,11 @@ body {
     transition: opacity 0.5s ease, visibility 0s 0.5s; /* Fade in and out */
 }
 
-h2 {
+.content h2 {
     font-size: 36px;
     color: #00ccff;
     margin: 0; /* Remove margin to keep it centered */
+    text-align: center; /* Center the text */
 }
 
 p {
