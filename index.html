@@ -57,7 +57,7 @@
         }
 
         .content {
-            padding: 120px 20px 20px 20px;
+            padding: 60px 20px; /* Default padding for home */
             max-width: 1200px;
             margin: 0 auto;
             box-sizing: border-box;
@@ -65,7 +65,24 @@
             color: #cccccc;
             border-radius: 10px;
             backdrop-filter: blur(5px); /* Blur the background behind the content */
-            transition: all 0.5 ease;
+            transition: all 0.5s ease; /* Transition for any size change */
+            opacity: 0; /* Start hidden */
+            visibility: hidden; /* Start hidden */
+            height: auto;
+        }
+
+        .content.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease, visibility 0s 0.5s; /* Fade in and out */
+        }
+
+        #home.active {
+            padding: 60px 20px; /* Smaller size for the home page */
+        }
+
+        #about.active {
+            padding: 120px 20px; /* Larger size for the about page */
         }
 
         h2 {
@@ -103,12 +120,12 @@
         </div>
     </div>
 
-    <div id="home" class="content">
+    <div id="home" class="content active">
         <h2>Welcome to Portile Social</h2>
         <p>This is the home page.</p>
     </div>
 
-    <div id="about" class="content" style="display:none;">
+    <div id="about" class="content">
         <h2>What is Portile Social?</h2>
         <p>Portile Social is a platform designed to connect people with similar interests and ideas, fostering collaboration and innovation.</p>
 
@@ -118,11 +135,19 @@
 
     <script>
         function showPage(pageId) {
-            document.getElementById('home').style.display = 'none';
-            document.getElementById('about').style.display = 'none';
-            document.getElementById(pageId).style.display = 'block';
+            // Get all content sections and remove active class
+            var contents = document.querySelectorAll('.content');
+            contents.forEach(function(content) {
+                content.classList.remove('active');
+            });
+
+            // Add active class to the selected page with a delay for the opacity transition
+            setTimeout(function() {
+                document.getElementById(pageId).classList.add('active');
+            }, 10); // Small delay to ensure proper transitions
         }
 
+        // Display the home page by default
         showPage('home');
     </script>
 
