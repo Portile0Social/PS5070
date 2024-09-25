@@ -16,9 +16,7 @@
             background-attachment: fixed;
             color: #ffffff;
             scroll-behavior: smooth; /* Smooth scrolling */
-            position: relative; /* Added for positioning child elements */
-            height: 100vh; /* Full viewport height */
-            overflow: hidden; /* Hide overflow */
+            position: relative;
         }
 
         .topbar {
@@ -67,25 +65,24 @@
         }
 
         .content {
-            position: absolute; /* Position absolute for centering */
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Translate to actual center */
-            padding: 20px; /* Adjusted padding for top and sides */
+            margin-top: 80px; /* Offset content by the height of the topbar */
+            padding: 20px;
             max-width: 1200px;
             box-sizing: border-box;
             background-color: rgba(0, 0, 0, 0.65);
             color: #cccccc;
             border-radius: 10px;
             backdrop-filter: blur(5px);
-            transition: opacity 0.5s ease, transform 0.5s ease; /* Added transform transition */
+            transition: opacity 0.5s ease, transform 0.5s ease;
             opacity: 0;
-            z-index: 500; /* Higher z-index to stay above background */
+            z-index: 500;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .content.active {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1); /* Reset transform on active */
+            transform: scale(1);
         }
 
         h2 {
@@ -102,12 +99,12 @@
         p1 {
             font-size: 10px;
             line-height: 2;
-            color: #fcfafa;   
+            color: #fcfafa;
         }
 
         #mfp {
             font-size: 25px;
-            font-weight: bold; /* this should make bold?! */
+            font-weight: bold; /* Make bold */
         }
 
         .footer {
@@ -138,7 +135,7 @@
         .close-button:hover {
             color: red;
         }
-        
+
         @media (max-width: 768px) {
             .nav-links {
                 flex-direction: column;
