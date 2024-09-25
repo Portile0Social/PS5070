@@ -14,6 +14,11 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #ffffff;
+            display: flex; /* Use Flexbox on the body */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full height */
+            overflow: hidden; /* Prevent scrolling */
         }
 
         .topbar {
@@ -61,7 +66,7 @@
             flex-direction: column; /* Align items vertically */
             justify-content: center; /* Center content vertically */
             align-items: center; /* Center content horizontally */
-            padding: 60px 20px; /* Default padding for home */
+            padding: 20px; /* Padding around content */
             max-width: 1200px;
             margin: 0 auto;
             box-sizing: border-box;
@@ -73,6 +78,8 @@
             opacity: 0; /* Start hidden */
             visibility: hidden; /* Start hidden */
             height: auto;
+            flex-grow: 1; /* Allow content to grow */
+            overflow: auto; /* Allow scrolling if content exceeds */
         }
 
         .content.active {
@@ -81,17 +88,10 @@
             transition: opacity 0.5s ease, visibility 0s 0.5s; /* Fade in and out */
         }
 
-        #home.active {
-            padding: 60px 20px; /* Smaller size for the home page */
-        }
-
-        #about.active {
-            padding: 120px 20px; /* Larger size for the about page */
-        }
-
         h2 {
             font-size: 36px;
             color: #00ccff;
+            margin: 0; /* Remove margin to keep it centered */
         }
 
         p {
