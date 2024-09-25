@@ -8,18 +8,24 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
         }
 
         .topbar {
-            background-color: #333;
+            background: linear-gradient(90deg, #1f1f1f, #303030);
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px; /* Increased padding */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             position: fixed;
             width: 100%;
             top: 0;
@@ -28,48 +34,46 @@
 
         .logo h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #00ccff;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 20px;
             font-size: 18px;
             position: relative;
-            padding: 5px 0;
+            padding: 10px 0;
         }
 
-        .nav-links a::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-links a:hover {
+            color: #00ccff;
         }
 
         .content {
-            padding: 140px 20px 20px 20px; /* Further increased padding for the content */
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            padding: 200px 20px 20px 20px;
+            max-width: 800px;
         }
 
-        .visible {
-            opacity: 1;
-            transform: translateX(0);
+        h2 {
+            font-size: 36px;
+            color: #00ccff;
+            margin-bottom: 20px;
         }
 
-        .hidden {
-            display: none;
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            font-size: 14px;
+            color: #666666;
         }
     </style>
 </head>
@@ -84,12 +88,12 @@
         </div>
     </div>
 
-    <div id="home" class="content visible">
+    <div id="home" class="content">
         <h2>Welcome to Portile Social</h2>
         <p>This is the home page.</p>
     </div>
 
-    <div id="about" class="content">
+    <div id="about" class="content hidden">
         <h2>What is Portile Social?</h2>
         <p>Portile Social is a platform designed to connect people with similar interests and ideas, fostering collaboration and innovation.</p>
 
@@ -100,18 +104,19 @@
     <script>
         function showPage(pageId) {
             // Hide all pages
-            document.querySelectorAll('.content').forEach(page => {
-                page.classList.remove('visible');
-            });
-
-            // Show the selected page with a transition
-            setTimeout(() => {
-                document.getElementById(pageId).classList.add('visible');
-            }, 100);  // Delay to allow opacity to be set to 0 first
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('about').classList.add('hidden');
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.remove('hidden');
         }
 
         // Load the default page
         showPage('home');
     </script>
+
+    <div class="footer">
+        &copy; 2024 Portile Social. All rights reserved.
+    </div>
 </body>
 </html>
