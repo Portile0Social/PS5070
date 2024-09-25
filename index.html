@@ -112,7 +112,7 @@
             background-color: rgba(51, 51, 51, 0.9);
             position: fixed;
             width: 100%;
-            bottom: 0;
+            bottom: -100px; /* Start out of view */
             box-sizing: border-box;
             transition: bottom 0.5s ease; /* Smooth transition when hiding */
         }
@@ -208,6 +208,12 @@
 
             // Display the home page by default
             showPage('home');
+
+            // Show footer on load
+            setTimeout(() => {
+                const footer = document.querySelector('.footer');
+                footer.style.bottom = '0'; // Move footer into view
+            }, 100); // Delay to ensure it's set after page load
         });
 
         function hideFooter() {
