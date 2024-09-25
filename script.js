@@ -1,22 +1,19 @@
 function showPage(pageId) {
-    // Get all content sections and remove active class
     var contents = document.querySelectorAll('.content');
     contents.forEach(function(content) {
         content.classList.remove('active');
     });
 
-    // Add active class to the selected page with a delay for the opacity transition
     setTimeout(function() {
         document.getElementById(pageId).classList.add('active');
         if (pageId === 'about') {
-            typeText('about-text', 50); // Start typing effect for about page
+            typeText('about-text', 50);
         } else if (pageId === 'home') {
-            typeText('home-text', 50); // Start typing effect for home page
+            typeText('home-text', 50);
         }
-    }, 10); // Small delay to ensure proper transitions
+    }, 10);
 }
 
-// Function to type out text character by character
 function typeText(elementId, typingSpeed) {
     const textElement = document.getElementById(elementId);
     const text = textElement.innerText; // Get the text content
@@ -30,9 +27,6 @@ function typeText(elementId, typingSpeed) {
             textElement.innerText += text.charAt(index); // Add the next character
             index++;
             setTimeout(typeNextCharacter, typingSpeed); // Call the function again after a delay
-        } else {
-            // Add an extra space for spacing when typing is complete
-            textElement.innerText += ' '; 
         }
     }
 
