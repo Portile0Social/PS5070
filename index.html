@@ -14,6 +14,7 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #ffffff;
+            scroll-behavior: smooth; /* Smooth scrolling */
         }
 
         .topbar {
@@ -46,14 +47,19 @@
             text-decoration: none;
             margin-left: 20px;
             font-size: 18px;
-            padding: 5px 10px;
+            padding: 8px 15px; /* Increased padding for a better touch target */
             border-radius: 4px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .nav-links a:hover {
             background-color: #00ccff;
             color: #1e1e1e;
+        }
+
+        .nav-links a.active {
+            background-color: #00ccff;
+            color: #1e1e1e; /* Highlight active link */
         }
 
         .content {
@@ -65,13 +71,14 @@
             color: #cccccc;
             border-radius: 10px;
             backdrop-filter: blur(5px);
-            transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Added transform transition */
             opacity: 0;
-            height: auto;
+            transform: translateY(20px); /* Slide-in effect */
         }
 
         .content.active {
             opacity: 1;
+            transform: translateY(0); /* Reset transform on active */
         }
 
         h2 {
@@ -96,6 +103,23 @@
             bottom: 0;
             box-sizing: border-box;
         }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links a {
+                margin-left: 0;
+                margin-top: 10px; /* Space between links on mobile */
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
@@ -104,7 +128,7 @@
             <h1>Portile Social</h1>
         </div>
         <div class="nav-links">
-            <a href="#home" data-page="home">Home</a>
+            <a href="#home" data-page="home" class="active">Home</a>
             <a href="#about" data-page="about">About</a>
         </div>
     </div>
@@ -133,6 +157,14 @@
                 setTimeout(function() {
                     document.getElementById(pageId).classList.add('active');
                 }, 10);
+                
+                // Update active link
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    }
+                });
             }
 
             // Event delegation for navigation links
