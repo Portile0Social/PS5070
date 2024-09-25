@@ -16,7 +16,6 @@
             background-attachment: fixed;
             color: #ffffff;
             scroll-behavior: smooth; /* Smooth scrolling */
-            position: relative;
         }
 
         .topbar {
@@ -49,7 +48,7 @@
             text-decoration: none;
             margin-left: 20px;
             font-size: 18px;
-            padding: 8px 15px; /* Increased padding for a better touch target */
+            padding: 8px 15px;
             border-radius: 4px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
@@ -61,26 +60,28 @@
 
         .nav-links a.active {
             background-color: #00ccff;
-            color: #1e1e1e; /* Highlight active link */
+            color: #1e1e1e;
         }
 
         .content {
-            margin-top: 80px; /* Offset content by the height of the topbar */
+            margin-top: 80px; /* Offset for topbar */
             padding: 20px;
             max-width: 1200px;
-            box-sizing: border-box;
             background-color: rgba(0, 0, 0, 0.65);
             color: #cccccc;
             border-radius: 10px;
             backdrop-filter: blur(5px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
             opacity: 0;
-            z-index: 500;
+            transform: scale(0.95);
+            transition: opacity 0.5s ease, transform 0.5s ease;
             margin-left: auto;
             margin-right: auto;
+            box-sizing: border-box;
+            display: none; /* Start hidden */
         }
 
         .content.active {
+            display: block;
             opacity: 1;
             transform: scale(1);
         }
@@ -193,10 +194,14 @@
                 var contents = document.querySelectorAll('.content');
                 contents.forEach(function(content) {
                     content.classList.remove('active');
+                    content.style.display = 'none'; // Hide inactive content
                 });
 
+                var activeContent = document.getElementById(pageId);
+                activeContent.style.display = 'block'; // Show active content
+
                 setTimeout(function() {
-                    document.getElementById(pageId).classList.add('active');
+                    activeContent.classList.add('active');
                 }, 10);
                 
                 // Update active link
