@@ -185,7 +185,7 @@
         &copy; 2024 Portile Social. All rights reserved.
     </div>
 
-    <div id="creepyText" class="creepy-text">Something's watching you...</div>
+    <div id="creepyText" class="creepy-text"></div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -226,10 +226,13 @@
                 footer.style.bottom = '0'; // Move footer into view
             }, 100); // Delay to ensure it's set after page load
 
-            // Show creepy text when clicking
-            document.body.addEventListener('click', function() {
-                showCreepyText();
-            });
+            // Show creepy text at random intervals
+            setInterval(showCreepyText, getRandomInterval());
+
+            // Function to get a fixed interval of 2 minutes (120000ms)
+            function getRandomInterval() {
+                return 120000; // Fixed interval of 120000ms (2 minutes)
+            }
         });
 
         function hideFooter() {
@@ -237,22 +240,28 @@
             footer.style.bottom = '-100px'; // Move the footer out of view
         }
 
+        const creepyPhrases = [
+            "Who are you?",
+            "Where am I?",
+            "Help me...",
+            "I have to run...",
+            "Did you hear that?",
+            "They're coming...",
+            "I can see you...",
+            "Don't turn around...",
+            "Why are you here?",
+            "It’s too late...",
+        ];
+
         function showCreepyText() {
             const creepyText = document.getElementById('creepyText');
+            const randomPhrase = creepyPhrases[Math.floor(Math.random() * creepyPhrases.length)];
+
+            creepyText.textContent = randomPhrase; // Set random phrase
             creepyText.style.opacity = 1; // Fade in
-            creepyText.style.left = Math.random() * window.innerWidth + 'px';
-            creepyText.style.top = Math.random() * window.innerHeight + 'px';
+            creepyText.style.top = Math.random() * 80 + 10 + 'vh'; // Random vertical position
+            creepyText.style.left = Math.random() * 80 + 10 + 'vw'; // Random horizontal position
+            
+            // Fade out after 3 seconds
+            set
 
-            setTimeout(() => {
-                creepyText.style.opacity = 0; // Fade out
-            }, 1500); // Stay visible for 1.5 seconds
-
-            // Optional: Reset position and opacity after fade out
-            setTimeout(() => {
-                creepyText.style.left = '';
-                creepyText.style.top = '';
-            }, 2000); // Reset after 2 seconds
-        }
-    </script>
-</body>
-</html>
