@@ -4,7 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portile Social</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to the CSS file -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('PortileSocial.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+
+        .topbar {
+            background-color: rgba(51, 51, 51, 0.9); /* Semi-transparent topbar */
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #00ccff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #00ccff;
+            color: #1e1e1e;
+        }
+
+        .content {
+            padding: 120px 20px 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: #cccccc;
+            border-radius: 10px;
+            backdrop-filter: blur(5px); /* Blur the background behind the content */
+        }
+
+        h2 {
+            font-size: 36px;
+            color: #00ccff;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: rgba(51, 51, 51, 0.9); /* Semi-transparent background for the footer */
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
     <div class="topbar">
@@ -17,21 +102,29 @@
         </div>
     </div>
 
-    <div id="home" class="content active">
+    <div id="home" class="content">
         <h2>Welcome to Portile Social</h2>
         <p>This is the home page.</p>
     </div>
 
-    <div id="about" class="content">
+    <div id="about" class="content" style="display:none;">
         <h2>What is Portile Social?</h2>
-        <p>Portile Social is an innovative platform to connect individuals with shared interests and ideas, promoting collaboration and inspiring innovation. We also offer a range of unblocked games, including favorites like Minecraft, allowing users to enjoy gaming without restrictions.</p>
+        <p>Portile Social is a platform designed to connect people with similar interests and ideas, fostering collaboration and innovation.</p>
 
-        <h2>Meet The Visionaries </h2>
+        <h2>Developers/Main Ideas Person</h2>
         <p>This project was brought to life by a dedicated team of developers and visionaries who believe in the power of social connectivity.</p>
     </div>
 
-    <script src="script.js"></script> <!-- Link to the JavaScript file -->
-    
+    <script>
+        function showPage(pageId) {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('about').style.display = 'none';
+            document.getElementById(pageId).style.display = 'block';
+        }
+
+        showPage('home');
+    </script>
+
     <div class="footer">
         &copy; 2024 Portile Social. All rights reserved.
     </div>
