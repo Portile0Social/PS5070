@@ -229,9 +229,9 @@
             // Show creepy text at random intervals
             setInterval(showCreepyText, getRandomInterval());
 
-            // Function to get a fixed interval of 2 minutes (120000ms)
+            // Function to get a random interval between 5 and 15 seconds
             function getRandomInterval() {
-                return 120000; // Fixed interval of 120000ms (2 minutes)
+                return Math.floor(Math.random() * (15000 - 5000 + 1)) + 5000; // 5000ms to 15000ms
             }
         });
 
@@ -263,5 +263,17 @@
             creepyText.style.left = Math.random() * 80 + 10 + 'vw'; // Random horizontal position
             
             // Fade out after 3 seconds
-            set
+            setTimeout(() => {
+                creepyText.style.opacity = 0;
+            }, 3000);
+
+            // Restart the interval
+            setTimeout(() => {
+                showCreepyText(); // Show again after fade out
+            }, getRandomInterval());
+        }
+    </script>
+</body>
+</html>
+
 
