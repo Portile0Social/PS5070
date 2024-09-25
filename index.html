@@ -8,72 +8,73 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #1e1e1e;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
+            background-color: #1e1e1e; /* Dark background */
+            color: #ffffff; /* Light text */
         }
 
         .topbar {
-            background: linear-gradient(90deg, #1f1f1f, #303030);
+            background-color: #333; /* Dark gray */
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 15px 20px;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-sizing: border-box;
         }
 
         .logo h1 {
             margin: 0;
-            font-size: 28px;
-            font-weight: 700;
-            color: #00ccff;
+            font-size: 24px;
+            color: #00ccff; /* Light blue */
+        }
+
+        .nav-links {
+            display: flex;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            margin: 0 20px;
+            margin-left: 20px;
             font-size: 18px;
-            position: relative;
-            padding: 10px 0;
         }
 
         .nav-links a:hover {
-            color: #00ccff;
+            color: #00ccff; /* Light blue hover effect */
         }
 
         .content {
-            padding: 200px 20px 20px 20px;
-            max-width: 800px;
+            padding: 100px 20px 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
 
         h2 {
             font-size: 36px;
-            color: #00ccff;
-            margin-bottom: 20px;
+            color: #00ccff; /* Light blue */
         }
 
         p {
             font-size: 18px;
             line-height: 1.6;
-            color: #cccccc;
+            color: #cccccc; /* Light gray text */
         }
 
         .footer {
-            position: fixed;
-            bottom: 20px;
+            padding: 20px;
+            text-align: center;
             font-size: 14px;
             color: #666666;
+            background-color: #333;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -93,7 +94,7 @@
         <p>This is the home page.</p>
     </div>
 
-    <div id="about" class="content hidden">
+    <div id="about" class="content" style="display:none;">
         <h2>What is Portile Social?</h2>
         <p>Portile Social is a platform designed to connect people with similar interests and ideas, fostering collaboration and innovation.</p>
 
@@ -103,15 +104,15 @@
 
     <script>
         function showPage(pageId) {
-            // Hide all pages
-            document.getElementById('home').classList.add('hidden');
-            document.getElementById('about').classList.add('hidden');
+            // Hide all content sections
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('about').style.display = 'none';
             
             // Show the selected page
-            document.getElementById(pageId).classList.remove('hidden');
+            document.getElementById(pageId).style.display = 'block';
         }
 
-        // Load the default page
+        // Display the home page by default
         showPage('home');
     </script>
 
