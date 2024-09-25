@@ -10,6 +10,8 @@ function showPage(pageId) {
         document.getElementById(pageId).classList.add('active');
         if (pageId === 'about') {
             typeText('about-text', 50); // Start typing effect for about page
+        } else if (pageId === 'home') {
+            typeText('home-text', 50); // Start typing effect for home page
         }
     }, 10); // Small delay to ensure proper transitions
 }
