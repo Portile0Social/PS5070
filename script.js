@@ -8,11 +8,5 @@ function showPage(pageId) {
         var currentPage = document.getElementById(pageId);
         currentPage.classList.add('active');
 
-        // Show the text directly without typewriter effect
-        const textElement = document.getElementById(pageId + '-text');
-        textElement.style.display = 'block'; // Show the text element
-    }, 10);
-}
-
 // Display the home page by default
 showPage('home');
