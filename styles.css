@@ -8,10 +8,10 @@ body {
     background-attachment: fixed;
     color: #ffffff;
     display: flex; /* Use Flexbox on the body */
-    flex-direction: column; /* Allow for proper stacking */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    min-height: 100vh; /* Full height */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full height */
+    overflow: hidden; /* Prevent scrolling */
 }
 
 .topbar {
@@ -70,6 +70,7 @@ body {
     transition: all 0.5s ease; /* Transition for any size change */
     opacity: 0; /* Start hidden */
     visibility: hidden; /* Start hidden */
+    height: auto;
     flex-grow: 1; /* Allow content to grow */
     overflow: auto; /* Allow scrolling if content exceeds */
 }
@@ -80,11 +81,10 @@ body {
     transition: opacity 0.5s ease, visibility 0s 0.5s; /* Fade in and out */
 }
 
-.content h2 {
+h2 {
     font-size: 36px;
     color: #00ccff;
     margin: 0; /* Remove margin to keep it centered */
-    text-align: center; /* Center the text */
 }
 
 p {
