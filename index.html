@@ -83,7 +83,7 @@
         }
 
         .content.active {
-            opacity: 60;
+            opacity: 1;
             transform: translate(-50%, -50%) scale(1); /* Reset transform on active */
         }
 
@@ -101,8 +101,7 @@
         p1 {
             font-size: 10px;
             line-height: 2;
-            color: #fcfafa;
-            
+            color: #fcfafa;   
         }
 
         .footer {
@@ -113,9 +112,20 @@
             background-color: rgba(51, 51, 51, 0.9);
             position: fixed;
             width: 100%;
-            height: 0.5%;
             bottom: 0;
             box-sizing: border-box;
+            transition: bottom 0.5s ease; /* Smooth transition when hiding */
+        }
+
+        .close-button {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 18px;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            cursor: pointer;
         }
 
         @media (max-width: 768px) {
@@ -159,7 +169,11 @@
 
         <h2>Meet The Visionaries</h2>
         <p>This project is the Product of a passionate team of developers and thinkers who believe in Underground Next Level Exploits!</p>
-        
+    </div>
+
+    <div class="footer">
+        <button class="close-button" onclick="hideFooter()">X</button>
+        &copy; 2024 Portile Social. All rights reserved.
     </div>
 
     <script>
@@ -195,10 +209,11 @@
             // Display the home page by default
             showPage('home');
         });
-    </script>
 
-    <div class="footer">
-        &copy; 2024 Portile Social. All rights reserved.
-    </div>
+        function hideFooter() {
+            const footer = document.querySelector('.footer');
+            footer.style.bottom = '-100px'; // Move the footer out of view
+        }
+    </script>
 </body>
 </html>
