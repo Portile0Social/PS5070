@@ -104,6 +104,11 @@
             backdrop-filter: blur(5px);
             transition: opacity 0.5s ease, transform 0.5s ease;
             z-index: 500;
+            display: none;
+        }
+
+        .content.active {
+            display: block;
         }
 
         h2 {
@@ -233,7 +238,7 @@
                 });
             });
 
-            showPage('home');
+            showPage('home'); // Default to showing the home page
         });
 
         function runCode() {
