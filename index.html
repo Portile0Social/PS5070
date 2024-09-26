@@ -8,11 +8,14 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
+            background-image: url('PortileSocial.jpeg');
             background-color: black;
+            background-size: fit;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: #ffffff;
-            scroll-behavior: smooth;
-            height: 100vh;
-            overflow: hidden;
+            scroll-behavior: smooth; /* Smooth scrolling */
         }
 
         .topbar {
@@ -26,6 +29,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-sizing: border-box;
         }
 
         .logo h1 {
@@ -59,52 +63,27 @@
             color: #1e1e1e;
         }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropbtn {
-            background-color: transparent;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: rgba(51, 51, 51, 0.9);
-            min-width: 120px;
-            z-index: 1000;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
         .content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            margin-top: 80px; /* Offset for topbar */
             padding: 20px;
-            max-width: 800px;
-            box-sizing: border-box;
+            max-width: 1200px;
             background-color: rgba(0, 0, 0, 0.65);
             color: #cccccc;
             border-radius: 10px;
             backdrop-filter: blur(5px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
             opacity: 0;
-            z-index: 500;
+            transform: scale(0.95);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+            display: none; /* Start hidden */
         }
 
         .content.active {
+            display: block;
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
+            transform: scale(1);
         }
 
         h2 {
@@ -118,6 +97,17 @@
             color: #fcfafa;
         }
 
+        p1 {
+            font-size: 10px;
+            line-height: 2;
+            color: #fcfafa;
+        }
+
+        #mfp {
+            font-size: 25px;
+            font-weight: bold; /* Make bold */
+        }
+
         .footer {
             padding: 15px;
             text-align: center;
@@ -126,12 +116,14 @@
             background-color: rgba(51, 51, 51, 0.9);
             position: fixed;
             width: 100%;
-            bottom: -100px;
-            transition: bottom 0.5s ease;
+            bottom: -100px; /* Start out of view */
+            box-sizing: border-box;
+            transition: bottom 0.5s ease; /* Smooth transition when hiding */
         }
 
         .close-button {
             background: transparent;
+            font-weight: normal;
             border: none;
             color: #ffffff;
             font-size: 18px;
@@ -153,7 +145,7 @@
 
             .nav-links a {
                 margin-left: 0;
-                margin-top: 10px;
+                margin-top: 10px; /* Space between links on mobile */
             }
 
             .topbar {
@@ -171,12 +163,6 @@
         <div class="nav-links">
             <a href="#home" data-page="home" class="active">Home</a>
             <a href="#about" data-page="about">About</a>
-            <div class="dropdown">
-                <button class="dropbtn">Playground</button>
-                <div class="dropdown-content">
-                    <a href="#coding-space" data-page="coding-space">Coding Space</a>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -187,15 +173,14 @@
 
     <div id="about" class="content" role="document">
         <h2>What is Portile Social?</h2>
-        <p>Portile Social is an innovative platform to connect individuals with shared interests and ideas, promoting collaboration and inspiring innovation. We also offer a range of unblocked games.</p>
-    </div>
-
-    <div id="coding-space" class="content">
-        <h2>Coding Space</h2>
-        <p>Here you can write and run your HTML, CSS, and JavaScript code!</p>
-        <textarea id="code" rows="10" cols="50" placeholder="Type your code here..."></textarea>
-        <button id="run-code">Run Code</button>
-        <iframe id="output" style="width: 100%; height: 300px; border: 1px solid #ccc;"></iframe>
+        <p>Portile Social is an innovative platform to connect individuals with shared interests and ideas, promoting collaboration and inspiring innovation. We also offer a range of unblocked games, including favorites like Minecraft, allowing users to enjoy gaming without restrictions.</p>
+        <p1>This project is the Product of a passionate team of developers and thinkers who believe in Underground Next Level Exploits!</p1>
+        
+        <h2>Meet The Visionaries</h2>
+        <p id="mfp">Main Developer</p>
+        <p>•Christian Michal high<br>•Xech Rust</p>
+        <p id="mfp">Concept Developers</p>
+        <p>•</p>
     </div>
 
     <div class="footer">
@@ -209,8 +194,15 @@
                 var contents = document.querySelectorAll('.content');
                 contents.forEach(function(content) {
                     content.classList.remove('active');
+                    content.style.display = 'none'; // Hide inactive content
                 });
-                document.getElementById(pageId).classList.add('active');
+
+                var activeContent = document.getElementById(pageId);
+                activeContent.style.display = 'block'; // Show active content
+
+                setTimeout(function() {
+                    activeContent.classList.add('active');
+                }, 10);
                 
                 // Update active link
                 document.querySelectorAll('.nav-links a').forEach(link => {
@@ -230,18 +222,14 @@
                 });
             });
 
+            // Display the home page by default
+            showPage('home');
+
             // Show footer on load
             setTimeout(() => {
                 const footer = document.querySelector('.footer');
                 footer.style.bottom = '0'; // Move footer into view
-            }, 100);
-
-            // Run code button functionality
-            document.getElementById('run-code').addEventListener('click', function() {
-                const code = document.getElementById('code').value;
-                const output = document.getElementById('output');
-                output.srcdoc = code; // Run the code in the iframe
-            });
+            }, 100); // Delay to ensure it's set after page load
         });
 
         function hideFooter() {
@@ -251,4 +239,3 @@
     </script>
 </body>
 </html>
-
