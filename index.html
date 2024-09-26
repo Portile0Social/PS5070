@@ -38,7 +38,6 @@
         .nav-links {
             display: flex;
             align-items: center;
-            position: relative;
         }
 
         .nav-links a {
@@ -61,36 +60,62 @@
             color: #1e1e1e;
         }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
+        /* Hamburger Menu Styling */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
         }
 
-        .dropdown-content {
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 5px;
+            transition: 0.4s;
+        }
+
+        .dropdown {
             display: none;
             position: absolute;
+            top: 60px;
+            right: 20px;
             background-color: rgba(51, 51, 51, 0.9);
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             border-radius: 4px;
+            z-index: 999;
+            flex-direction: column;
         }
 
-        .dropdown-content a {
-            color: white;
+        .dropdown a {
             padding: 12px 16px;
             text-decoration: none;
+            color: white;
             display: block;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .dropdown-content a:hover {
+        .dropdown a:hover {
             background-color: #00ccff;
             color: #1e1e1e;
         }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
+        /* Media Query for Hamburger Menu */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .dropdown {
+                display: none;
+            }
+
+            .dropdown.active {
+                display: flex;
+            }
         }
 
         .content {
@@ -175,12 +200,21 @@
         <div class="nav-links">
             <a href="#home" data-page="home" class="active">Home</a>
             <a href="#about" data-page="about">About</a>
-            <div class="dropdown">
-                <a href="javascript:void(0)">Playground</a>
-                <div class="dropdown-content">
-                    <a href="#code-playground" data-page="code-playground">Code Playground</a>
-                </div>
-            </div>
+            <a href="#code-playground" data-page="code-playground">Playground</a>
+        </div>
+
+        <!-- Hamburger Menu for Mobile -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Dropdown for Mobile -->
+        <div class="dropdown" id="dropdownMenu">
+            <a href="#home" data-page="home">Home</a>
+            <a href="#about" data-page="about">About</a>
+            <a href="#code-playground" data-page="code-playground">Playground</a>
         </div>
     </div>
 
@@ -222,7 +256,7 @@
                     document.getElementById(pageId).classList.add('active');
                 }, 10);
                 
-                document.querySelectorAll('.nav-links a').forEach(link => {
+                document.querySelectorAll('.nav-links a, .dropdown a').forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('data-page') === pageId) {
                         link.classList.add('active');
@@ -230,11 +264,12 @@
                 });
             }
 
-            document.querySelectorAll('.nav-links a').forEach(link => {
+            document.querySelectorAll('.nav-links a, .dropdown a').forEach(link => {
                 link.addEventListener('click', function(event) {
                     event.preventDefault();
                     const pageId = this.getAttribute('data-page');
                     showPage(pageId);
+                    toggleMenu(false); // Close menu on mobile after selection
                 });
             });
 
@@ -247,6 +282,16 @@
             const js = `<script>${document.getElementById('js').value}<\/script>`;
             const resultFrame = document.getElementById('result');
             resultFrame.srcdoc = html + css + js;
+        }
+
+        // Toggle dropdown menu for mobile
+        function toggleMenu(forceClose = null) {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            if (forceClose === false || dropdownMenu.classList.contains('active')) {
+                dropdownMenu.classList.remove('active');
+            } else {
+                dropdownMenu.classList.add('active');
+            }
         }
     </script>
 </body>
