@@ -64,16 +64,25 @@
             display: inline-block;
         }
 
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
         .dropdown-content {
             display: none;
             position: absolute;
             background-color: rgba(51, 51, 51, 0.9);
-            min-width: 100%; /* Full width of dropdown */
-            z-index: 1000; /* Ensure above other elements */
+            min-width: 120px;
+            z-index: 1000;
         }
 
         .dropdown:hover .dropdown-content {
-            display: block; /* Show on hover */
+            display: block;
         }
 
         .content {
@@ -82,7 +91,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            max-width: 1200px;
+            max-width: 800px;
             box-sizing: border-box;
             background-color: rgba(0, 0, 0, 0.65);
             color: #cccccc;
@@ -163,7 +172,7 @@
             <a href="#home" data-page="home" class="active">Home</a>
             <a href="#about" data-page="about">About</a>
             <div class="dropdown">
-                <a href="#" class="dropbtn">Playground</a>
+                <button class="dropbtn">Playground</button>
                 <div class="dropdown-content">
                     <a href="#coding-space" data-page="coding-space">Coding Space</a>
                 </div>
@@ -242,3 +251,4 @@
     </script>
 </body>
 </html>
+
