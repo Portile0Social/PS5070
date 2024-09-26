@@ -11,8 +11,6 @@
             background-color: black;
             color: #ffffff;
             scroll-behavior: smooth;
-            position: relative;
-            height: 100vh;
         }
 
         .topbar {
@@ -60,76 +58,19 @@
             color: #1e1e1e;
         }
 
-        /* Hamburger Menu Styling */
-        .hamburger {
+        /* Hide Playground button */
+        .nav-links a[data-page="code-playground"] {
             display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger div {
-            width: 30px;
-            height: 3px;
-            background-color: #ffffff;
-            margin: 5px;
-            transition: 0.4s;
-        }
-
-        .dropdown {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background-color: rgba(51, 51, 51, 0.9);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            border-radius: 4px;
-            z-index: 999;
-            flex-direction: column;
-        }
-
-        .dropdown a {
-            padding: 12px 16px;
-            text-decoration: none;
-            color: white;
-            display: block;
-        }
-
-        .dropdown a:hover {
-            background-color: #00ccff;
-            color: #1e1e1e;
-        }
-
-        /* Media Query for Hamburger Menu */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .dropdown.active {
-                display: flex;
-            }
         }
 
         .content {
-            padding: 100px 20px;
+            padding: 20px;
             max-width: 1200px;
-            margin: 0 auto;
-            box-sizing: border-box;
+            margin: 80px auto 0;
             background-color: rgba(0, 0, 0, 0.65);
             color: #cccccc;
             border-radius: 10px;
             backdrop-filter: blur(5px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            z-index: 500;
-            display: none;
-        }
-
-        .content.active {
-            display: block;
         }
 
         h2 {
@@ -140,51 +81,6 @@
         p {
             font-size: 18px;
             line-height: 1.6;
-            color: #fcfafa;
-        }
-
-        .footer {
-            padding: 15px;
-            text-align: center;
-            font-size: 14px;
-            color: #ffffff;
-            background-color: rgba(51, 51, 51, 0.9);
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            box-sizing: border-box;
-        }
-
-        iframe {
-            width: 100%;
-            height: 300px;
-            border: 1px solid #00ccff;
-            margin-top: 20px;
-        }
-
-        textarea {
-            width: 100%;
-            height: 100px;
-            background-color: #2e2e2e;
-            color: #ffffff;
-            border: 1px solid #00ccff;
-            padding: 10px;
-            margin-bottom: 10px;
-            resize: none;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #00ccff;
-            border: none;
-            color: #1e1e1e;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        button:hover {
-            background-color: #007799;
         }
     </style>
 </head>
@@ -196,21 +92,7 @@
         <div class="nav-links">
             <a href="#home" data-page="home" class="active">Home</a>
             <a href="#about" data-page="about">About</a>
-            <a href="#code-playground" data-page="code-playground">Playground</a>
-        </div>
-
-        <!-- Hamburger Menu for Mobile -->
-        <div class="hamburger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-
-        <!-- Dropdown for Mobile -->
-        <div class="dropdown" id="dropdownMenu">
-            <a href="#home" data-page="home">Home</a>
-            <a href="#about" data-page="about">About</a>
-            <a href="#code-playground" data-page="code-playground">Playground</a>
+            <a href="#code-playground" data-page="code-playground">Playground</a> <!-- Hidden with CSS -->
         </div>
     </div>
 
@@ -221,74 +103,12 @@
 
     <div id="about" class="content" role="document">
         <h2>What is Portile Social?</h2>
-        <p>Portile Social is an innovative platform to connect individuals with shared interests and ideas, promoting collaboration and inspiring innovation.</p>
+        <p>Portile Social is an innovative platform to connect individuals with shared interests and ideas.</p>
     </div>
 
-    <div id="code-playground" class="content">
+    <div id="code-playground" class="content" role="document">
         <h2>Code Playground</h2>
-        <p>Type your HTML, CSS, and JavaScript below and see the output in real-time:</p>
-
-        <textarea id="html" placeholder="HTML code"></textarea>
-        <textarea id="css" placeholder="CSS code"></textarea>
-        <textarea id="js" placeholder="JavaScript code"></textarea>
-        <button onclick="runCode()">Run Code</button>
-
-        <iframe id="result"></iframe>
+        <p>Here, you can write and run your own HTML, JavaScript, and CSS code.</p>
     </div>
-
-    <div class="footer">
-        &copy; 2024 Portile Social. All rights reserved.
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            function showPage(pageId) {
-                var contents = document.querySelectorAll('.content');
-                contents.forEach(function(content) {
-                    content.classList.remove('active');
-                });
-
-                setTimeout(function() {
-                    document.getElementById(pageId).classList.add('active');
-                }, 10);
-                
-                document.querySelectorAll('.nav-links a, .dropdown a').forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('data-page') === pageId) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            document.querySelectorAll('.nav-links a, .dropdown a').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const pageId = this.getAttribute('data-page');
-                    showPage(pageId);
-                    toggleMenu(false); // Close menu on mobile after selection
-                });
-            });
-
-            showPage('home'); // Default to showing the home page
-        });
-
-        function runCode() {
-            const html = document.getElementById('html').value;
-            const css = `<style>${document.getElementById('css').value}</style>`;
-            const js = `<script>${document.getElementById('js').value}<\/script>`;
-            const resultFrame = document.getElementById('result');
-            resultFrame.srcdoc = html + css + js;
-        }
-
-        // Toggle dropdown menu for mobile
-        function toggleMenu(forceClose = null) {
-            const dropdownMenu = document.getElementById('dropdownMenu');
-            if (forceClose === false || dropdownMenu.classList.contains('active')) {
-                dropdownMenu.classList.remove('active');
-            } else {
-                dropdownMenu.classList.add('active');
-            }
-        }
-    </script>
 </body>
 </html>
