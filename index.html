@@ -137,18 +137,6 @@
             color: red;
         }
 
-        /* Styles for the iframe */
-        #main-iframe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none; /* Start hidden */
-            z-index: 999; /* Make sure it covers everything */
-            border: none; /* Remove border */
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 flex-direction: column;
@@ -201,8 +189,6 @@
         &copy; 2024 Portile Social. All rights reserved.
     </div>
 
-    <iframe id="main-iframe" src="main.html"></iframe> <!-- Iframe for main.html -->
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             function showPage(pageId) {
@@ -237,8 +223,19 @@
 
             // Main button functionality
             document.getElementById('main-button').addEventListener('click', function() {
-                const iframe = document.getElementById('main-iframe');
-                iframe.style.display = 'block'; // Show iframe
+                fetch('main.html')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.body.innerHTML = data; // Replace entire body content
+                    })
+                    .catch(error => {
+                        alert('Failed to load main.html: ' + error.message);
+                    });
             });
 
             showPage('home');
