@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #ffffff;
-            scroll-behavior: smooth; /* Smooth scrolling */
+            scroll-behavior: smooth;
         }
 
         .topbar {
@@ -64,7 +64,7 @@
         }
 
         .content {
-            margin-top: 80px; /* Offset for topbar */
+            margin-top: 80px;
             padding: 20px;
             max-width: 1200px;
             background-color: rgba(0, 0, 0, 0.65);
@@ -77,7 +77,7 @@
             margin-left: auto;
             margin-right: auto;
             box-sizing: border-box;
-            display: none; /* Start hidden */
+            display: none;
         }
 
         .content.active {
@@ -105,7 +105,7 @@
 
         #mfp {
             font-size: 25px;
-            font-weight: bold; /* Make bold */
+            font-weight: bold;
         }
 
         .footer {
@@ -116,9 +116,9 @@
             background-color: rgba(51, 51, 51, 0.9);
             position: fixed;
             width: 100%;
-            bottom: -100px; /* Start out of view */
+            bottom: -100px;
             box-sizing: border-box;
-            transition: bottom 0.5s ease; /* Smooth transition when hiding */
+            transition: bottom 0.5s ease;
         }
 
         .close-button {
@@ -137,6 +137,18 @@
             color: red;
         }
 
+        /* Styles for the iframe */
+        #main-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none; /* Start hidden */
+            z-index: 999; /* Make sure it covers everything */
+            border: none; /* Remove border */
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 flex-direction: column;
@@ -145,7 +157,7 @@
 
             .nav-links a {
                 margin-left: 0;
-                margin-top: 10px; /* Space between links on mobile */
+                margin-top: 10px;
             }
 
             .topbar {
@@ -163,6 +175,7 @@
         <div class="nav-links">
             <a href="#home" data-page="home" class="active">Home</a>
             <a href="#about" data-page="about">About</a>
+            <button id="main-button">Main</button> <!-- Main button -->
         </div>
     </div>
 
@@ -188,27 +201,24 @@
         &copy; 2024 Portile Social. All rights reserved.
     </div>
 
-    <div class="MHTML">
-        <iframe src="main.html"></iframe>
-    </div>
-    
+    <iframe id="main-iframe" src="main.html"></iframe> <!-- Iframe for main.html -->
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             function showPage(pageId) {
                 var contents = document.querySelectorAll('.content');
                 contents.forEach(function(content) {
                     content.classList.remove('active');
-                    content.style.display = 'none'; // Hide inactive content
+                    content.style.display = 'none';
                 });
 
                 var activeContent = document.getElementById(pageId);
-                activeContent.style.display = 'block'; // Show active content
+                activeContent.style.display = 'block';
 
                 setTimeout(function() {
                     activeContent.classList.add('active');
                 }, 10);
                 
-                // Update active link
                 document.querySelectorAll('.nav-links a').forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('data-page') === pageId) {
@@ -217,7 +227,6 @@
                 });
             }
 
-            // Event delegation for navigation links
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', function(event) {
                     event.preventDefault();
@@ -226,19 +235,23 @@
                 });
             });
 
-            // Display the home page by default
+            // Main button functionality
+            document.getElementById('main-button').addEventListener('click', function() {
+                const iframe = document.getElementById('main-iframe');
+                iframe.style.display = 'block'; // Show iframe
+            });
+
             showPage('home');
 
-            // Show footer on load
             setTimeout(() => {
                 const footer = document.querySelector('.footer');
-                footer.style.bottom = '0'; // Move footer into view
-            }, 100); // Delay to ensure it's set after page load
+                footer.style.bottom = '0';
+            }, 100);
         });
 
         function hideFooter() {
             const footer = document.querySelector('.footer');
-            footer.style.bottom = '-100px'; // Move the footer out of view
+            footer.style.bottom = '-100px';
         }
     </script>
 </body>
