@@ -10,12 +10,13 @@
             font-family: Arial, sans-serif;
             background-image: url('PortileSocial.jpeg');
             background-color: black;
-            background-size: cover; /* Change to cover for better scaling */
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #ffffff;
             scroll-behavior: smooth;
+            position: relative; /* For positioning pop-up windows */
         }
 
         .topbar {
@@ -61,25 +62,56 @@
             color: #fcfafa;
         }
 
-        .close-button {
+        .pop-up {
+            position: fixed;
+            width: 300px;
+            height: 200px;
+            background-color: rgba(51, 51, 51, 0.8);
+            border: 2px solid #00ccff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+            color: #ffffff;
+            display: none; /* Initially hidden */
+            animation: slideIn 0.5s forwards; /* Animation */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-popup {
             background: transparent;
-            font-weight: normal;
             border: none;
             color: #ffffff;
             font-size: 18px;
             cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
         }
 
-        .close-button:hover {
-            color: red;
+        .open-popup-button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #00ccff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .open-popup-button:hover {
+            background-color: #0099cc;
         }
 
-        @media (max-width: 768px) {
-            .topbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
     </style>
 </head>
 <body>
@@ -93,6 +125,26 @@
         <h2>Main Page Content</h2>
         <p>Welcome to the main page of Portile Social! Here you can explore a variety of unblocked games, engage in public chats, and connect with like-minded individuals.</p>
         <p>Enjoy your time and don't forget to check out our features!</p>
+        <button class="open-popup-button" onclick="createPopUps()">Show Game Windows</button>
     </div>
+
+    <script>
+        function createPopUps() {
+            for (let i = 0; i < 5; i++) { // Create 5 pop-up windows
+                const popUp = document.createElement('div');
+                popUp.className = 'pop-up';
+                popUp.style.top = `${Math.random() * (window.innerHeight - 220)}px`;
+                popUp.style.left = `${Math.random() * (window.innerWidth - 310)}px`;
+                popUp.innerHTML = `
+                    <button class="close-popup" onclick="this.parentElement.style.display='none'">x</button>
+                    <h3>Game Window ${i + 1}</h3>
+                    <p>Content coming soon!</p>
+                `;
+                document.body.appendChild(popUp);
+                popUp.style.display = 'block'; // Show the pop-up
+            }
+        }
+    </script>
 </body>
 </html>
+
