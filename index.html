@@ -3,155 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Runner</title>
+    <title>New Website with Monaco Editor</title>
     <link rel="stylesheet" href="https://unpkg.com/monaco-editor@latest/min/vs/editor/editor.main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         body {
             margin: 0;
             background-color: #1e1e1e;
             display: flex;
             flex-direction: column;
+            align-items: center;
             height: 100vh;
+            color: white;
         }
-        #header {
-            display: flex;
-            justify-content: flex-start;
-            background-color: #2a2a2a;
-            padding: 10px;
+        h1 {
+            margin: 20px;
         }
-        #run-button {
+        #open-editor-button {
             background-color: #007acc;
             color: white;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
+            font-size: 16px;
+        }
+        /* Modal Styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #2a2a2a;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        #header {
+            display: flex;
+            justify-content: space-between;
+        }
+        #run-button, #close-button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
         }
         #editor-container {
             display: flex;
-            flex: 1;
+            flex-direction: column;
             position: relative;
         }
         #editor {
-            width: 50vw;
-            height: 100%;
+            width: 100%;
+            height: 400px;
             border: 2px solid #cccccc12;
             box-sizing: border-box;
         }
         #tabs {
             display: flex;
-            flex-direction: column;
-            width: 100px;
-            background-color: #2a2a2a;
+            margin-bottom: 10px;
         }
         .tab {
             flex: 1;
             padding: 10px;
             text-align: center;
-            border-bottom: 2px solid #cccccc12;
-            color: #ffffff;
+            border: 2px solid #cccccc12;
             cursor: pointer;
-            user-select: none;
         }
-        .tab:hover {
-            background-color: #333333;
-        }
-        .active {
+        .tab.active {
             background-color: #444444;
-        }
-        #webview {
-            width: 50%;
-            height: 100%;
-            border: 2px solid #cccccc12;
-            box-sizing: border-box;
-            overflow: auto;
-            background-color: #ffffff;
-        }
-        #console {
-            width: 100%;
-            height: 25vh;
-            border: 2px solid #cccccc12;
-            box-sizing: border-box;
-            position: relative;
         }
     </style>
 </head>
-<body>  
-    <div id="header">
-        <button id="run-button">Run</button>
-    </div>
-    <div id="editor-container">
-        <div id="tabs">
-            <div class="tab active" data-lang="html">HTML</div>
-            <div class="tab" data-lang="js">JavaScript</div>
-            <div class="tab" data-lang="css">CSS</div>
+<body>
+    <h1>Welcome to My New Website</h1>
+    <button id="open-editor-button">Open Monaco Editor</button>
+
+    <!-- Monaco Editor Modal -->
+    <div id="monaco-editor-modal" class="modal">
+        <div class="modal-content">
+            <div id="header">
+                <button id="run-button">Run</button>
+                <button id="close-button">Close</button>
+            </div>
+            <div id="editor-container">
+                <div id="tabs">
+                    <div class="tab active" data-lang="html">HTML</div>
+                    <div class="tab" data-lang="js">JavaScript</div>
+                    <div class="tab" data-lang="css">CSS</div>
+                </div>
+                <div id="editor"></div>
+                <div id="webview"></div>
+            </div>
         </div>
-        <div id="editor"></div>
-        <div id="webview"></div>
     </div>
-    <div id="console"></div>
+
     <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
     <script>
+        document.getElementById('open-editor-button').addEventListener('click', () => {
+            document.getElementById('monaco-editor-modal').style.display = 'block';
+            initMonacoEditor(); // Initialize Monaco Editor when opening the modal
+        });
+
+        document.getElementById('close-button').addEventListener('click', () => {
+            document.getElementById('monaco-editor-modal').style.display = 'none';
+        });
+
         require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
-        require(['vs/editor/editor.main'], function() {
-            const codeStorage = {
-                html: localStorage.getItem('html') || "<!DOCTYPE html>",
-                js: localStorage.getItem('js') || "// JavaScript Code",
-                css: localStorage.getItem('css') || "/* CSS Code */"
-            };
+        let editor; // Monaco Editor instance
 
-            const editor = monaco.editor.create(document.getElementById('editor'), {
-                value: codeStorage.html,
-                language: "html",
-                theme: "vs-dark"
-            });
+        function initMonacoEditor() {
+            require(['vs/editor/editor.main'], function() {
+                editor = monaco.editor.create(document.getElementById('editor'), {
+                    value: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n</head>\n<body>\n</body>\n</html>",
+                    language: "html",
+                    theme: "vs-dark"
+                });
 
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    const lang = tab.dataset.lang;
+                const tabs = document.querySelectorAll('.tab');
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        tabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        const lang = tab.dataset.lang;
 
-                    codeStorage[editor.getModel().getLanguageId()] = editor.getValue();
-                    localStorage.setItem(editor.getModel().getLanguageId(), codeStorage[editor.getModel().getLanguageId()]);
+                        monaco.editor.setModelLanguage(editor.getModel(), lang === 'js' ? 'javascript' : lang);
+                        editor.setValue(tab.dataset.lang === 'js' ? "// JavaScript Code" : tab.dataset.lang === 'css' ? "/* CSS Code */" : "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n</head>\n<body>\n</body>\n</html>");
+                    });
+                });
 
-                    monaco.editor.setModelLanguage(editor.getModel(), lang === 'js' ? 'javascript' : lang);
-                    editor.setValue(codeStorage[lang]);
+                document.getElementById('run-button').addEventListener('click', () => {
+                    const webview = document.getElementById('webview');
+                    webview.innerHTML = editor.getValue();
                 });
             });
-
-            document.getElementById('run-button').addEventListener('click', () => {
-                codeStorage.html = editor.getValue();
-                localStorage.setItem('html', codeStorage.html);
-                const webview = document.getElementById('webview');
-                webview.innerHTML = codeStorage.html;
-
-                const style = document.createElement('style');
-                style.textContent = codeStorage.css;
-                webview.appendChild(style);
-
-                const script = document.createElement('script');
-                script.textContent = codeStorage.js;
-                webview.appendChild(script);
-            });
-
-            editor.onDidChangeModelContent(() => {
-                const activeTab = document.querySelector('.tab.active').dataset.lang;
-                codeStorage[activeTab] = editor.getValue();
-                localStorage.setItem(activeTab, codeStorage[activeTab]);
-            });
-
-            window.addEventListener('load', () => {
-                const activeTab = document.querySelector('.tab.active');
-                const activeLang = activeTab.dataset.lang;
-                editor.setValue(codeStorage[activeLang]);
-            });
-
-            window.addEventListener('beforeunload', () => {
-                codeStorage[editor.getModel().getLanguageId()] = editor.getValue();
-                localStorage.setItem(editor.getModel().getLanguageId(), codeStorage[editor.getModel().getLanguageId()]);
-            });
-        });
+        }
     </script>
 </body>
 </html>
