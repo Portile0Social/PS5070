@@ -1,256 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="/inject.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portile Social</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-image: url('PortileSocial.jpeg');
-            background-color: black;
-            background-size: fit;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #ffffff;
-            scroll-behavior: smooth;
-        }
-
-        .topbar {
-            background-color: rgba(51, 51, 51, 0.9);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-sizing: border-box;
-        }
-
-        .logo h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #00ccff;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 18px;
-            padding: 8px 15px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            background-color: #00ccff;
-            color: #1e1e1e;
-        }
-
-        .nav-links a.active {
-            background-color: #00ccff;
-            color: #1e1e1e;
-        }
-
-        .content {
-            margin-top: 80px;
-            padding: 20px;
-            max-width: 1200px;
-            background-color: rgba(0, 0, 0, 0.65);
-            color: #cccccc;
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            margin-left: auto;
-            margin-right: auto;
-            box-sizing: border-box;
-            display: none;
-        }
-
-        .content.active {
-            display: block;
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        h2 {
-            font-size: 36px;
-            color: #00ccff;
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #fcfafa;
-        }
-
-        p1 {
-            font-size: 10px;
-            line-height: 2;
-            color: #fcfafa;
-        }
-
-        #mfp {
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .footer {
-            padding: 15px;
-            text-align: center;
-            font-size: 14px;
-            color: #ffffff;
-            background-color: rgba(51, 51, 51, 0.9);
-            position: fixed;
-            width: 100%;
-            bottom: -100px;
-            box-sizing: border-box;
-            transition: bottom 0.5s ease;
-        }
-
-        .close-button {
-            background: transparent;
-            font-weight: normal;
-            border: none;
-            color: #ffffff;
-            font-size: 18px;
-            position: absolute;
-            right: 19px;
-            top: 9px;
-            cursor: pointer;
-        }
-
-        .close-button:hover {
-            color: red;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .nav-links a {
-                margin-left: 0;
-                margin-top: 10px;
-            }
-
-            .topbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
+    <title>Vertex</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="topbar">
-        <div class="logo">
-            <h1>Portile Social</h1>
-        </div>
-        <div class="nav-links">
-            <a href="#home" data-page="home" class="active">Home</a>
-            <a href="#about" data-page="about">About</a>
-            <button id="main-button">Main</button> <!-- Main button -->
-        </div>
+    <div id="app">
+        <header>
+            <h1><i style="margin-right: 14px;rotate: 90deg;" class="fa-brands fa-hive"></i>Vertex</h1>
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search...">
+                <i style="z-index:1;opacity:0.6;left:-73px;top:-7px;position:absolute;" class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div>
+            <button id="changelog-btn">
+                <i class="fa-solid fa-chart-column"></i>
+                Updates
+            </button>
+            <button id="changelog-btn">
+                <a href='https://forms.gle/sK9bLb2oMiMtF4ZMA'>
+                    <i class="fa-solid fa-comment"></i>
+                    Suggest a website!</a>
+            </button></div>
+        </header>
+        <nav>
+            <div class="filter-btn-group">
+                <button class="filter-btn" data-filter="All">All</button>
+                <button class="filter-btn" data-filter="Apps">Apps</button>
+                <button class="filter-btn" data-filter="Games">Games</button>
+            </div>
+        </nav>
+        <section id="results"></section>
+        <div id="pagination"></div>
+        <div id="context-menu"></div>
     </div>
-
-    <div id="home" class="content active" role="main">
-        <h2>Welcome to Portile Social</h2>
-        <p>This is the home page.</p>
-    </div>
-
-    <div id="about" class="content" role="document">
-        <h2>What is Portile Social?</h2>
-        <p>Portile Social is an innovative platform to connect individuals with shared interests and ideas, promoting collaboration and inspiring innovation. We also offer a range of unblocked games, including favorites like Minecraft, allowing users to enjoy gaming without restrictions.</p>
-        <p1>This project is the Product of a passionate team of developers and thinkers who believe in Underground Next Level Exploits!</p1>
-        
-        <h2>Meet The Visionaries</h2>
-        <p id="mfp">Main Developer</p>
-        <p>•Christian Michal high<br>•Xech Rust</p>
-        <p id="mfp">Concept Developers</p>
-        <p style="font-weight: bold;">•Kennerdrop</p>
-        <p>•Xech Rust</p>
-    </div>
-
-    <div class="footer">
-        <button class="close-button" onclick="hideFooter()">x</button>
-        &copy; 2024 Portile Social. All rights reserved.
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            function showPage(pageId) {
-                var contents = document.querySelectorAll('.content');
-                contents.forEach(function(content) {
-                    content.classList.remove('active');
-                    content.style.display = 'none';
-                });
-
-                var activeContent = document.getElementById(pageId);
-                activeContent.style.display = 'block';
-
-                setTimeout(function() {
-                    activeContent.classList.add('active');
-                }, 10);
-                
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('data-page') === pageId) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const pageId = this.getAttribute('data-page');
-                    showPage(pageId);
-                });
-            });
-
-            // Main button functionality
-            document.getElementById('main-button').addEventListener('click', function() {
-                fetch('main.html')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.text();
-                    })
-                    .then(data => {
-                        document.body.innerHTML = data; // Replace entire body content
-                    })
-                    .catch(error => {
-                        alert('Failed to load main.html: ' + error.message);
-                    });
-            });
-
-            showPage('home');
-
-            setTimeout(() => {
-                const footer = document.querySelector('.footer');
-                footer.style.bottom = '0';
-            }, 100);
-        });
-
-        function hideFooter() {
-            const footer = document.querySelector('.footer');
-            footer.style.bottom = '-100px';
-        }
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
