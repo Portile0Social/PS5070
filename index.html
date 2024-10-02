@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portile Social - Monaco Editor</title>
-    <link rel="stylesheet" href="https://unpkg.com/monaco-editor@latest/min/vs/editor/editor.main.css">
+    <title>Portile Social - Games</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         body {
             margin: 0;
             background-color: #1e1e1e;
-            height: 100vh;
             color: white;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
         .topbar {
             display: flex;
@@ -45,55 +44,25 @@
         .dropdown-content a:hover {
             background-color: #555;
         }
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        .modal-content {
-            background-color: #2a2a2a;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-height: 80%;
-            overflow-y: auto;
-        }
-        #editor-container {
+        .games-container {
+            flex: 1;
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
         }
-        #editor {
-            width: 100%;
-            height: 400px;
-            overflow-y: auto;
-        }
-        /* Iframe for the result */
-        #output-iframe {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
+        .game-card {
+            background-color: #2a2a2a;
             border: 2px solid #007acc;
-            background-color: white;
-            z-index: 2000;
+            padding: 20px;
+            margin: 20px;
+            width: 200px;
+            text-align: center;
         }
-        #iframe-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 24px;
-            background: #333;
+        .game-card a {
             color: white;
-            border: none;
-            padding: 5px;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -104,74 +73,30 @@
     </div>
 
     <div class="dropdown-content" id="dropdown-menu">
-        <a href="#" id="open-editor-button">Open Monaco Editor</a>
+        <a href="#">Games</a>
+        <a href="#">Public Chat</a>
     </div>
 
-    <div id="monaco-editor-modal" class="modal">
-        <div class="modal-content">
-            <div id="editor-container">
-                <button id="close-button">Close</button>
-                <div id="editor"></div>
-                <button id="run-button">Run</button>
-            </div>
+    <div class="games-container">
+        <div class="game-card">
+            <h2>Snake Game</h2>
+            <a href="snake-game.html">Play Now</a>
+        </div>
+        <div class="game-card">
+            <h2>Tic-Tac-Toe</h2>
+            <a href="tic-tac-toe.html">Play Now</a>
+        </div>
+        <div class="game-card">
+            <h2>Car Racing</h2>
+            <a href="car-racing.html">Play Now</a>
         </div>
     </div>
 
-    <div id="iframe-container"></div>
-
-    <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
     <script>
         document.querySelector('.hamburger').addEventListener('click', () => {
             const menu = document.getElementById('dropdown-menu');
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
         });
-
-        document.getElementById('open-editor-button').addEventListener('click', () => {
-            document.getElementById('monaco-editor-modal').style.display = 'block';
-            initMonacoEditor();
-            document.getElementById('dropdown-menu').style.display = 'none';
-        });
-
-        document.getElementById('close-button').addEventListener('click', () => {
-            document.getElementById('monaco-editor-modal').style.display = 'none';
-        });
-
-        require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
-        let editor;
-
-        function initMonacoEditor() {
-            require(['vs/editor/editor.main'], function() {
-                editor = monaco.editor.create(document.getElementById('editor'), {
-                    value: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n</head>\n<body>\n</body>\n</html>",
-                    language: "html",
-                    theme: "vs-dark"
-                });
-
-                document.getElementById('run-button').addEventListener('click', () => {
-                    createIframeWithContent(editor.getValue());
-                });
-            });
-        }
-
-        function createIframeWithContent(content) {
-            const iframeContainer = document.getElementById('iframe-container');
-            const iframe = document.createElement('iframe');
-            iframe.id = 'output-iframe';
-            iframeContainer.appendChild(iframe);
-
-            const iframeClose = document.createElement('button');
-            iframeClose.id = 'iframe-close';
-            iframeClose.innerHTML = 'X';
-            iframeClose.addEventListener('click', () => {
-                iframeContainer.innerHTML = ''; // Clear the iframe and close button
-            });
-            iframeContainer.appendChild(iframeClose);
-
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            iframeDoc.open();
-            iframeDoc.write(content);
-            iframeDoc.close();
-        }
     </script>
 </body>
 </html>
