@@ -3,105 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Website with Monaco Editor</title>
+    <title>Portile Social - Monaco Editor</title>
     <link rel="stylesheet" href="https://unpkg.com/monaco-editor@latest/min/vs/editor/editor.main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         body {
             margin: 0;
             background-color: #1e1e1e;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             height: 100vh;
             color: white;
+            display: flex;
+            flex-direction: column;
         }
-        h1 {
-            margin: 20px;
-        }
-        #open-editor-button {
-            background-color: #007acc;
-            color: white;
-            border: none;
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
+            background-color: #333;
+            color: white;
         }
-        /* Modal Styling */
+        .hamburger {
+            cursor: pointer;
+            font-size: 24px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 10px;
+            background-color: #444;
+            min-width: 160px;
+            z-index: 1000;
+        }
+        .dropdown-content a {
+            padding: 12px 16px;
+            display: block;
+            color: white;
+            text-decoration: none;
+        }
+        .dropdown-content a:hover {
+            background-color: #555;
+        }
         .modal {
             display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
+            position: fixed;
+            z-index: 1000;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
         }
         .modal-content {
             background-color: #2a2a2a;
-            margin: 15% auto; /* 15% from the top and centered */
+            margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-        }
-        #header {
-            display: flex;
-            justify-content: space-between;
-        }
-        #run-button, #close-button {
-            background-color: #007acc;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
+            width: 80%;
         }
         #editor-container {
             display: flex;
             flex-direction: column;
-            position: relative;
         }
         #editor {
             width: 100%;
             height: 400px;
-            border: 2px solid #cccccc12;
-            box-sizing: border-box;
-        }
-        #tabs {
-            display: flex;
-            margin-bottom: 10px;
-        }
-        .tab {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            border: 2px solid #cccccc12;
-            cursor: pointer;
-        }
-        .tab.active {
-            background-color: #444444;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to My New Website</h1>
-    <button id="open-editor-button">Open Monaco Editor</button>
+    <div class="topbar">
+        <h1>Portile Social</h1>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </div>
 
-    <!-- Monaco Editor Modal -->
+    <div class="dropdown-content" id="dropdown-menu">
+        <a href="#" id="open-editor-button">Open Monaco Editor</a>
+    </div>
+
     <div id="monaco-editor-modal" class="modal">
         <div class="modal-content">
-            <div id="header">
-                <button id="run-button">Run</button>
-                <button id="close-button">Close</button>
-            </div>
             <div id="editor-container">
-                <div id="tabs">
-                    <div class="tab active" data-lang="html">HTML</div>
-                    <div class="tab" data-lang="js">JavaScript</div>
-                    <div class="tab" data-lang="css">CSS</div>
-                </div>
+                <button id="close-button">Close</button>
                 <div id="editor"></div>
+                <button id="run-button">Run</button>
                 <div id="webview"></div>
             </div>
         </div>
@@ -109,9 +95,15 @@
 
     <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
     <script>
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            const menu = document.getElementById('dropdown-menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        });
+
         document.getElementById('open-editor-button').addEventListener('click', () => {
             document.getElementById('monaco-editor-modal').style.display = 'block';
-            initMonacoEditor(); // Initialize Monaco Editor when opening the modal
+            initMonacoEditor();
+            document.getElementById('dropdown-menu').style.display = 'none';
         });
 
         document.getElementById('close-button').addEventListener('click', () => {
@@ -119,7 +111,7 @@
         });
 
         require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
-        let editor; // Monaco Editor instance
+        let editor;
 
         function initMonacoEditor() {
             require(['vs/editor/editor.main'], function() {
@@ -127,18 +119,6 @@
                     value: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n</head>\n<body>\n</body>\n</html>",
                     language: "html",
                     theme: "vs-dark"
-                });
-
-                const tabs = document.querySelectorAll('.tab');
-                tabs.forEach(tab => {
-                    tab.addEventListener('click', () => {
-                        tabs.forEach(t => t.classList.remove('active'));
-                        tab.classList.add('active');
-                        const lang = tab.dataset.lang;
-
-                        monaco.editor.setModelLanguage(editor.getModel(), lang === 'js' ? 'javascript' : lang);
-                        editor.setValue(tab.dataset.lang === 'js' ? "// JavaScript Code" : tab.dataset.lang === 'css' ? "/* CSS Code */" : "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n</head>\n<body>\n</body>\n</html>");
-                    });
                 });
 
                 document.getElementById('run-button').addEventListener('click', () => {
