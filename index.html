@@ -13,14 +13,16 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            font-family: Arial, sans-serif;
         }
         .topbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 15px 20px;
             background-color: #333;
             color: white;
+            position: relative;
         }
         .hamburger {
             cursor: pointer;
@@ -29,17 +31,21 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            top: 60px;
-            left: 10px;
+            top: 100%;
+            right: 20px;
             background-color: #444;
             min-width: 160px;
             z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
         }
         .dropdown-content a {
             padding: 12px 16px;
             display: block;
             color: white;
             text-decoration: none;
+            transition: background-color 0.3s;
         }
         .dropdown-content a:hover {
             background-color: #555;
@@ -48,7 +54,7 @@
             flex: 1;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: space-evenly;
             align-items: center;
             padding: 20px;
         }
@@ -57,12 +63,29 @@
             border: 2px solid #007acc;
             padding: 20px;
             margin: 20px;
-            width: 200px;
+            width: 220px;
             text-align: center;
+            border-radius: 10px;
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+        .game-card:hover {
+            background-color: #333;
+            transform: translateY(-5px);
         }
         .game-card a {
             color: white;
             text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .games-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .game-card {
+                width: 100%;
+                max-width: 300px;
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
@@ -70,11 +93,10 @@
     <div class="topbar">
         <h1>Portile Social</h1>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
-    </div>
-
-    <div class="dropdown-content" id="dropdown-menu">
-        <a href="#">Games</a>
-        <a href="#">Public Chat</a>
+        <div class="dropdown-content" id="dropdown-menu">
+            <a href="#">Games</a>
+            <a href="#">Public Chat</a>
+        </div>
     </div>
 
     <div class="games-container">
@@ -96,6 +118,13 @@
         document.querySelector('.hamburger').addEventListener('click', () => {
             const menu = document.getElementById('dropdown-menu');
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        window.addEventListener('click', function(e) {
+            const menu = document.getElementById('dropdown-menu');
+            if (!document.querySelector('.topbar').contains(e.target)) {
+                menu.style.display = 'none';
+            }
         });
     </script>
 </body>
