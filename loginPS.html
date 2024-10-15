@@ -1,4 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link id="stylesheet" rel="stylesheet" href="stylesheets/main-default.css">
@@ -12,63 +16,40 @@
         <input autocomplete="off" oninput="checkPassword()" id="password-input" placeholder="Enter password..." type="text" readonly onfocus="this.removeAttribute('readonly');"/>
         <button onclick="login()">Login</button>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
-        let correctPassword = 'hotdog';
+        async function hashPassword(password) {
+            const hash = CryptoJS.SHA256(password);
+            return hash.toString(CryptoJS.enc.Hex);
+        }
 
-        function checkPassword() {
+        async function login() {
             const inputField = document.getElementById('password-input');
-            const typedValue = inputField.value;
+            let passwordHash = await hashPassword(inputField.value);
+
             if (document.getElementById('auth-text').textContent.includes("auth")) {
-                if (typedValue == correctPassword) {
-                    inputField.classList = 'green';
-                } else if (typedValue == ''){
-                    inputField.classList = '';
+                if (passwordHash === 'd9bb3e53c75c923ef9d59a1696cf3c872979ff238a43e4582fdfcc9b6f924d38') {
+                    window.location.href = 'main.html';
                 } else {
-                    inputField.classList = 'red'
+                    alert('Incorrect password!');
                 }
             } else {
-                if (typedValue == '14141') {
-                    inputField.classList = 'green';
-                } else if (typedValue == ''){
-                    inputField.classList = '';
+                if (passwordHash === 'f02025c8dbb73d87bba47fc8c437640d79cd79b97bde5c22fbd69a2033e5d10f') {
+                    window.location.href = 'main.html';
                 } else {
-                    inputField.classList = 'red'
+                    alert('Your SSO key is incorrect.');
+                    window.location.href = 'index.html';
                 }
             }
         }
 
         const inputField = document.getElementById('password-input');
-
-        inputField.addEventListener('keydown', function(event) {
+        inputField.addEventListener('keydown', async function(event) {
             if (event.code === 'Enter') {
-                event.preventDefault()
-                login()
+                event.preventDefault();
+                await login();
             }
         });
-
-        function login() {
-            if (document.getElementById('auth-text').textContent.includes("auth")) {
-                if (inputField.value === correctPassword) {
-                    localStorage.setItem("auth", correctPassword);
-                    if (localStorage.getItem('vertex_sso') == 'true')  {
-                        window.location.href = 'main.html';
-                    } else {
-                        inputField.value = ''
-                        inputField.classList = ''
-                        document.getElementById('auth-text').textContent = 'Now, enter your sso key.'
-                    }
-                } else {
-                    alert('Incorrect password!');
-                }
-            } else {
-                if (inputField.value === '14141') {
-                    localStorage.setItem('vertex_sso', 'true');
-                    window.location.href = 'main.html';
-                } else {
-                    alert('Your SSO key is incorrect. You are now device-banned from Vertex.')
-                    window.location.href = 'index.html';
-                }
-            }
-        }
     </script>
 </body>
+</html>
