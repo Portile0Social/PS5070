@@ -9,8 +9,11 @@
     <script src="stylesheets/styler.js"></script>
 </head>
 <body>
-    <h2><i style="margin-right: 14px;rotate: 90deg;" class="fa-brands fa-hive"></i>Portile0Social</h2>
-    <div>
+    <h2>
+        <i style="margin-right: 14px; rotate: 90deg;" class="fa-brands fa-hive"></i>
+        Portile<span class="strikethrough">0</span>Social
+    </h2>
+    <div class="login-box">
         <h1 id="auth-text">Enter your auth key to continue.</h1>
         <input type="password" id="fake-password" name="email" style="display:none;"> 
         <input autocomplete="off" oninput="checkPassword()" id="password-input" placeholder="Enter password..." type="text" readonly onfocus="this.removeAttribute('readonly');"/>
