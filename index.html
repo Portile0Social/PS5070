@@ -1,6 +1,5 @@
 <html><head>
   <title>New Tab</title>
-  <link rel="stylesheet" href="res/search.css">
   <link rel="icon" href="favicon32.png" media="(prefers-color-scheme: light)">
   <link rel="icon" href="favicon32_dark.png" media="(prefers-color-scheme: dark)">
   <script src="script.js"></script>
@@ -29,7 +28,7 @@
     <ntp-realbox id="realbox" shown="">
       <form id="inputWrapper" action="https://www.google.com/search" method="GET" role="search">
         <input id="input" name="q" type="search" autocomplete="off" spellcheck="false" role="combobox" aria-live="polite" placeholder="Search Google or type a URL">
-        <ntp-realbox-icon id="icon" in-searchbox="" background-image="" mask-image="res/search.svg">
+        <ntp-realbox-icon id="icon" in-searchbox="" background-image="" mask-image="GIM/search.svg">
           <div id="container" style="--container-bg-color: ;">
             <div id="icon"></div>
           </div>
@@ -129,7 +128,7 @@ ntp-logo#logo {
   min-height: var(--ntp-logo-height);
 }
 div#logo {
-  background-image: url(google_logo.svg);
+  background-image: url(GIM/google_logo.svg);
   height: 92px;
   width: 272px;
 }
@@ -169,10 +168,10 @@ input[type="search"]::-webkit-search-results-decoration {
   color: var(--color-realbox-placeholder);
 }
 #lensSearchButton {
-  background-image: url(lens_icon.svg);
+  background-image: url(GIM/lens_icon.svg);
 }
 #voiceSearchButton {
-  background-image: url(googlemic_clr_24px.svg);
+  background-image: url(GIM/googlemic_clr_24px.svg);
   right: 53px;
 }
 .realbox-icon-button {
@@ -212,7 +211,7 @@ ntp-realbox-icon {
   width: 32px;
 }
 div#icon {
-  background-image: url(search.svg);
+  background-image: url(GIM/search.svg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 20px;
