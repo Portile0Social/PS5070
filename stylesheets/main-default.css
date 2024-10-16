@@ -83,3 +83,8 @@ button:hover {
 .fa-hive:hover {
     transform: rotate(15deg);
 }
+
+#PSIMG {
+    height:20px;
+    width:20px;
+}
