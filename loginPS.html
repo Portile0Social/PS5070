@@ -17,7 +17,7 @@
     <div class="container-xyz">
         <h1 id="msg-unknown">Enter your password to continue.</h1>
         <input autocomplete="off" id="field-123abc" placeholder="Enter password..." type="password"/>
-        <button onclick="fn_xzy()">Login</button>
+        <button id="login-button">Login</button>
     </div>
 
     <script>
@@ -44,6 +44,8 @@
                 }
             }
         }
+
+        document.getElementById('login-button').addEventListener('click', fn_xzy);
 
         document.getElementById('field-123abc').addEventListener('keydown', function(e) {
             if (e.code === 'Enter') {
