@@ -5,68 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link id="stylesheet" rel="stylesheet" href="stylesheets/main-default.css">
+    <link id="css-obfuscate" rel="stylesheet" href="stylesheets/main-default.css">
     <script src="stylesheets/styler.js"></script>
+    <title>Login</title>
 </head>
 <body>
     <h2>
         <i style="margin-right: 14px; rotate: 90deg;" class="fa-brands fa-hive"></i>
         Portile<span>&#8709;</span>Social
     </h2>
-    <div class="login-box">
-        <h1 id="auth-text">Enter your auth key to continue.</h1>
-        <input type="password" id="fake-password" name="email" style="display:none;"> 
-        <input autocomplete="off" id="password-input" placeholder="Enter password..." type="text" readonly onfocus="this.removeAttribute('readonly');"/>
-        <button onclick="login()">Login</button>
+    <div class="container-xyz">
+        <h1 id="msg-unknown">Enter your password to continue.</h1>
+        <input autocomplete="off" id="field-123abc" placeholder="Enter password..." type="password"/>
+        <button onclick="fn_xzy()">Login</button>
     </div>
 
     <script>
-        let authPassword, ssoPassword;
+        // Obfuscated variable names that sound like CSS properties
+        const cssVarMain = 'Yourmainpassword'; // Main password
+        const cssVarSSO = 'yourSSOKey'; // SSO key (set as needed)
 
-        // Fetch the XML data
-        async function fetchCredentials() {
-            try {
-                const response = await fetch('GIM/passwords.xml');
-                const text = await response.text();
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(text, 'application/xml');
+        // Confusing function name
+        function fn_xzy() {
+            const inputValue = document.getElementById('field-123abc').value; // Obfuscated input reference
+            const msgValue = document.getElementById('msg-unknown').textContent; // Obfuscated text reference
 
-                authPassword = xmlDoc.getElementsByTagName('auth')[0].getElementsByTagName('password')[0].textContent;
-                ssoPassword = xmlDoc.getElementsByTagName('sso')[0].getElementsByTagName('password')[0].textContent;
-            } catch (error) {
-                console.error('Error fetching credentials:', error);
-            }
-        }
-
-        // Call the function to fetch credentials on page load
-        window.onload = fetchCredentials;
-
-        async function login() {
-            const inputField = document.getElementById('password-input');
-            let enteredPassword = inputField.value;
-
-            if (document.getElementById('auth-text').textContent.includes("auth")) {
-                if (enteredPassword === authPassword) {
-                    window.location.href = 'main.html';
+            if (msgValue.includes("password")) {
+                if (inputValue === cssVarMain) {
+                    // Prompt for SSO key after successful password entry
+                    const ssoInput = prompt('Enter your SSO key:');
+                    if (ssoInput === cssVarSSO) {
+                        window.location.href = 'main.html'; // Redirect to main.html on success
+                    } else {
+                        alert('Incorrect SSO key!');
+                    }
                 } else {
-                    alert('Incorrect password!');
-                }
-            } else {
-                if (enteredPassword === ssoPassword) {
-                    window.location.href = 'main.html';
-                } else {
-                    alert('Your SSO key is incorrect.');
-                    window.location.href = 'index.html';
+                    alert('Incorrect main password!');
                 }
             }
         }
 
-        // Login on Enter key
-        const inputField = document.getElementById('password-input');
-        inputField.addEventListener('keydown', async function(event) {
-            if (event.code === 'Enter') {
-                event.preventDefault();
-                await login();
+        // Obfuscated event listener
+        document.getElementById('field-123abc').addEventListener('keydown', function(e) {
+            if (e.code === 'Enter') {
+                e.preventDefault(); // Prevent default form submission behavior
+                fn_xzy(); // Call the confusing function
             }
         });
     </script>
