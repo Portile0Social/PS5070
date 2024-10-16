@@ -21,21 +21,21 @@
     </div>
 
     <script>
-        // Obfuscated variable names that sound like CSS properties
-        const cssVarMain = 'Yourmainpassword'; // Main password
-        const cssVarSSO = 'yourSSOKey'; // SSO key (set as needed)
+        const cssVarMain = 'Yourmainpassword';
+        const cssVarSSO = 'yourSSOKey';
 
-        // Confusing function name
         function fn_xzy() {
-            const inputValue = document.getElementById('field-123abc').value; // Obfuscated input reference
-            const msgValue = document.getElementById('msg-unknown').textContent; // Obfuscated text reference
+            const inputValue = document.getElementById('field-123abc').value;
+            const msgElement = document.getElementById('msg-unknown');
 
-            if (msgValue.includes("password")) {
+            if (msgElement.textContent.includes("password")) {
                 if (inputValue === cssVarMain) {
-                    // Prompt for SSO key after successful password entry
+                    msgElement.textContent = 'Enter your SSO key to continue.';
+                    document.getElementById('field-123abc').value = '';
+
                     const ssoInput = prompt('Enter your SSO key:');
                     if (ssoInput === cssVarSSO) {
-                        window.location.href = 'main.html'; // Redirect to main.html on success
+                        window.location.href = 'main.html';
                     } else {
                         alert('Incorrect SSO key!');
                     }
@@ -45,11 +45,10 @@
             }
         }
 
-        // Obfuscated event listener
         document.getElementById('field-123abc').addEventListener('keydown', function(e) {
             if (e.code === 'Enter') {
-                e.preventDefault(); // Prevent default form submission behavior
-                fn_xzy(); // Call the confusing function
+                e.preventDefault();
+                fn_xzy();
             }
         });
     </script>
