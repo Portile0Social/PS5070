@@ -26,7 +26,7 @@
         // Fetch the XML data
         async function fetchCredentials() {
             try {
-                const response = await fetch('passwords.xml');
+                const response = await fetch('GIM/passwords.xml');
                 const text = await response.text();
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(text, 'application/xml');
