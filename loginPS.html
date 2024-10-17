@@ -3,33 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <title>Login</title>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .login-container {
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid gray;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input.correct {
+            border-color: green;
+        }
+
+        input.incorrect {
+            border-color: red;
+        }
+
+        #main-btn {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #main-btn:hover {
+            background-color: darkgreen;
+        }
+    </style>
 </head>
 <body>
-    <h2 id="header-text">
-        <img src="PS01IMG/Portile0Social.png" id="PSIMG" alt="Portile Social Logo">
-        Portile<span>&#8709;</span>Social
-    </h2>
-    <div class="container-xyz">
-        <h1 id="msg-unknown">Enter your password to continue.</h1>
-        <input autocomplete="off" id="field-123abc" placeholder="Enter password..." type="password"/>
-        <button id="login-button">Login</button>
-    </div>
 
-    <script>
-    const cssVarMain = 'Yourmainpassword';  
+<div class="login-container">
+    <h1>Login Page</h1>
+    <input type="password" id="password" placeholder="Enter Password">
+    <br>
+    <button id="main-btn" onclick="goToMain()">Go to Main</button>
+</div>
 
-    document.getElementById('login-button').addEventListener('click', function() {
-        const inputPassword = document.getElementById('field-123abc').value;
-        if (inputPassword === cssVarMain) {
-            document.getElementById('msg-unknown').innerText = 'Login successful!';
-            
+<script>
+    const passwordInput = document.getElementById('password');
+    const mainBtn = document.getElementById('main-btn');
+    const correctPassword = 'correct-password';
+
+    passwordInput.addEventListener('input', function() {
+        if (passwordInput.value === correctPassword) {
+            passwordInput.classList.add('correct');
+            passwordInput.classList.remove('incorrect');
+            mainBtn.style.display = 'inline-block';
         } else {
-            document.getElementById('msg-unknown').innerText = 'Incorrect password. Please try again.';
+            passwordInput.classList.add('incorrect');
+            passwordInput.classList.remove('correct');
+            mainBtn.style.display = 'none';
         }
     });
-    </script>
+
+    function goToMain() {
+        window.location.href = 'main.html';
+    }
+</script>
+
 </body>
 </html>
