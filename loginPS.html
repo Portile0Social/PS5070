@@ -10,7 +10,7 @@
     <title>Login</title>
 </head>
 <body>
-    <h2>
+    <h2 id="header-text">
         <img src="PS01IMG/Portile0Social.png" id="PSIMG" alt="Portile Social Logo">
         Portile<span>&#8709;</span>Social
     </h2>
@@ -21,26 +21,29 @@
     </div>
 
     <script>
-        const cssVarMain = 'Yourmainpassword';
-        const cssVarSSO = 'yourSSOKey';
+        const cssVarMain = 'Yourmainpassword';  // Main password
+        const cssVarSSO = 'yourSSOKey';         // SSO key
 
         function fn_xzy() {
             const inputValue = document.getElementById('field-123abc').value;
             const msgElement = document.getElementById('msg-unknown');
+            const headerText = document.getElementById('header-text');
 
             if (msgElement.textContent.includes("password")) {
                 if (inputValue === cssVarMain) {
+                    // Correct main password
                     msgElement.textContent = 'Enter your SSO key to continue.';
                     document.getElementById('field-123abc').value = '';
-
-                    const ssoInput = prompt('Enter your SSO key:');
-                    if (ssoInput === cssVarSSO) {
-                        window.location.href = 'main.html';
-                    } else {
-                        alert('Incorrect SSO key!');
-                    }
+                    headerText.textContent = 'Input SSO';
                 } else {
                     alert('Incorrect main password!');
+                }
+            } else if (msgElement.textContent.includes("SSO")) {
+                // Check the SSO key after entering the main password
+                if (inputValue === cssVarSSO) {
+                    window.location.href = 'main.html';
+                } else {
+                    alert('Incorrect SSO key!');
                 }
             }
         }
