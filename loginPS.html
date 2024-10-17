@@ -19,31 +19,17 @@
     </div>
 
     <script>
-        const cssVarMain = 'Yourmainpassword';  // Main password
+    const cssVarMain = 'Yourmainpassword';  
 
-        function fn_xzy() {
-            const inputValue = document.getElementById('field-123abc').value;
-            const msgElement = document.getElementById('msg-unknown');
-            const headerText = document.getElementById('header-text');
-
-            if (inputValue === cssVarMain) {
-                // Correct main password
-                msgElement.textContent = 'Enter your SSO key to continue.';
-                headerText.innerHTML = '<img src="PS01IMG/Portile0Social.png" id="PSIMG" alt="Portile Social Logo"> Input SSO'; 
-                document.getElementById('field-123abc').value = '';  // Clear the input field
-            } else {
-                alert('Incorrect main password!');
-            }
+    document.getElementById('login-button').addEventListener('click', function() {
+        const inputPassword = document.getElementById('field-123abc').value;
+        if (inputPassword === cssVarMain) {
+            document.getElementById('msg-unknown').innerText = 'Login successful!';
+            
+        } else {
+            document.getElementById('msg-unknown').innerText = 'Incorrect password. Please try again.';
         }
-
-        document.getElementById('login-button').addEventListener('click', fn_xzy);
-
-        document.getElementById('field-123abc').addEventListener('keydown', function(e) {
-            if (e.code === 'Enter') {
-                e.preventDefault();
-                fn_xzy();
-            }
-        });
+    });
     </script>
 </body>
 </html>
