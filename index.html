@@ -3,12 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display SSO Key</title>
+    <title>Fetch SSO Key</title>
+    <style>
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: #3498db;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-    <h1>SSO Key</h1>
-    <div id="ssoKey"></div> <!-- Element to display the SSO key -->
-    
-    <script type="module" src="script.js"></script> <!-- Your existing JavaScript file -->
-</body>/
+
+<div class="container">
+    <div id="loader" class="spinner"></div>
+    <p id="loadingText" class="loading-text">Fetching SSO key...</p>
+    <p id="ssoKey" style="font-size: 1.5rem; color: green;"></p>
+</div>
+
+<script type="module" src="path-to-your-js-file.js"></script>
+
+</body>
 </html>
