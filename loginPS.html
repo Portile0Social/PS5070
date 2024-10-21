@@ -3,84 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-
-        .login-container {
-            text-align: center;
-        }
-
-        input {
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid gray;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        input.correct {
-            border-color: green;
-        }
-
-        input.incorrect {
-            border-color: red;
-        }
-
-        #main-btn {
-            display: none;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: green;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #main-btn:hover {
-            background-color: darkgreen;
-        }
-    </style>
+    <title>Display SSO Key</title>
 </head>
 <body>
-
-<div class="login-container">
-    <h1>Login Page</h1>
-    <input type="password" id="password" placeholder="Enter Password">
-    <br>
-    <button id="main-btn" onclick="goToMain()">Go to Main</button>
-</div>
-
-<script>
-    const passwordInput = document.getElementById('password');
-    const mainBtn = document.getElementById('main-btn');
-    const correctPassword = 'correct-password';
-
-    passwordInput.addEventListener('input', function() {
-        if (passwordInput.value === correctPassword) {
-            passwordInput.classList.add('correct');
-            passwordInput.classList.remove('incorrect');
-            mainBtn.style.display = 'inline-block';
-        } else {
-            passwordInput.classList.add('incorrect');
-            passwordInput.classList.remove('correct');
-            mainBtn.style.display = 'none';
-        }
-    });
-
-    function goToMain() {
-        window.location.href = 'main.html';
-    }
-</script>
-
-</body>
+    <h1>SSO Key</h1>
+    <div id="ssoKey"></div> <!-- Element to display the SSO key -->
+    
+    <script type="module" src="script.js"></script> <!-- Your existing JavaScript file -->
+</body>/
 </html>
