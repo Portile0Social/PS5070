@@ -39,8 +39,16 @@ export async function fetchKey() {
 }
 
 async function displaySSOKey() {
-    const ssoKey = await fetchKey(); // Fetch the SSO key
-    const ssoKeyElement = document.getElementById('ssoKey'); // Get the HTML element
+    const ssoKeyElement = document.getElementById('ssoKey');
+    const loader = document.getElementById('loader');
+    
+    // Show the loader
+    loader.style.display = 'block';
+    
+    const ssoKey = await fetchKey();
+    
+    // Hide the loader
+    loader.style.display = 'none';
     
     if (ssoKey) {
         ssoKeyElement.textContent = ssoKey; // Display the key
@@ -49,5 +57,5 @@ async function displaySSOKey() {
     }
 }
 
-// Call the function to display the SSO key after the app initializes
-displaySSOKey();
+// Run displaySSOKey when the window loads
+window.onload = displaySSOKey;
