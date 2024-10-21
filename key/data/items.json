@@ -1,0 +1,13 @@
+{
+  "Apps": [
+    { "name": "Calculator", "url": "calculator.html" },
+    { "name": "Calendar", "url": "calendar.html" }
+  ],
+  "Games": [
+    { "name": "Battle Royale", "url": "battle-royale.html" },
+    { "name": "Zelda Adventure", "url": "zelda-adventure.html" }
+  ],
+  "Other": [
+    { "name": "Random Note", "url": "random-note.html" }
+  ]
+}
