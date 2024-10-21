@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch SSO Key</title>
+    <title>Fetch SSO Key & Password</title>
     <style>
         .spinner {
             width: 40px;
@@ -29,14 +29,20 @@
             text-align: center;
             margin-top: 50px;
         }
+
+        #password {
+            font-size: 1.5rem;
+            color: green;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div id="loader" class="spinner"></div>
-    <p id="loadingText" class="loading-text">Fetching SSO key...</p>
+    <p id="loadingText" class="loading-text">Fetching data...</p>
     <p id="ssoKey" style="font-size: 1.5rem; color: green;"></p>
+    <p id="password"></p>
 </div>
 
 <script type="module" src="script.js"></script>
