@@ -1,55 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portile-0-Social --Main</title>
-  <style>
-    section {
-      margin-bottom: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Links</title>
 </head>
 <body>
-  <h1>Organized Items</h1>
+    <h1>Click on an item:</h1>
+    <ul id="link-list"></ul>
 
-  <div id="itemContainer"></div>
-
-  <script>
-    // Load the items JSON file
-    fetch('Key/Data/items.json')
-      .then(response => response.json()) // Parse the JSON response
-      .then(data => {
-        const itemContainer = document.getElementById('itemContainer');
-
-        // Loop through each section in the data
-        for (const section in data) {
-          // Create a section element
-          const sectionElement = document.createElement('section');
-          const header = document.createElement('h2');
-          header.textContent = section;
-          sectionElement.appendChild(header);
-
-          // Sort items alphabetically
-          const sortedItems = data[section].sort((a, b) => a.name.localeCompare(b.name));
-
-          // Create a list for the items
-          const list = document.createElement('ul');
-          sortedItems.forEach(item => {
-            const listItem = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = item.url;
-            link.textContent = item.name;
-            listItem.appendChild(link);
-            list.appendChild(listItem);
-          });
-
-          // Append the list to the section
-          sectionElement.appendChild(list);
-          itemContainer.appendChild(sectionElement);
-        }
-      })
-      .catch(error => console.error('Error loading the items JSON file:', error));
-  </script>
+    <script src="key/data/script.js"></script>
 </body>
 </html>

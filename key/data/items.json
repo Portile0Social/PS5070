@@ -1,13 +1,17 @@
-{
-  "Apps": [
-    { "name": "Calculator", "url": "calculator.html" },
-    { "name": "Calendar", "url": "calendar.html" }
-  ],
-  "Games": [
-    { "name": "Battle Royale", "url": "battle-royale.html" },
-    { "name": "Zelda Adventure", "url": "zelda-adventure.html" }
-  ],
-  "Other": [
-    { "name": "Random Note", "url": "random-note.html" }
-  ]
-}
+[
+  {
+    "name": "",
+    "url": "home.html",
+    "description": "Go to the home page for the latest updates."
+  },
+  {
+    "name": "About Us",
+    "url": "about.html",
+    "description": "Learn more about our mission and team."
+  },
+  {
+    "name": "Contact",
+    "url": "contact.html",
+    "description": "Reach out to us via the contact page."
+  }
+]

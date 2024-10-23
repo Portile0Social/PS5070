@@ -93,3 +93,4 @@ async function displayInfo() {
 
 // Run displayInfo when the window loads
 window.onload = displayInfo;
+
