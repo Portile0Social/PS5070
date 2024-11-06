@@ -1,9 +1,10 @@
+<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Site with Minecraft-style Chat</title>
+    <title>Real-Time Minecraft-Style Chat</title>
     <style>
         /* Basic page style */
         body {
@@ -87,20 +88,18 @@
             <div class="chat-input-container">
                 <input type="text" id="chatInput" placeholder="Type your message here...">
                 <button id="chatSendBtn">Send</button>
-                <button id="toggleChatType">Toggle to Private Chat</button>
             </div>
         </div>
     </div>
 
+    <script src="/socket.io/socket.io.js"></script>
     <script>
+        const socket = io(); // Connect to the server
+
         let chatOverlay = document.getElementById('chatOverlay');
         let chatMessages = document.getElementById('chatMessages');
         let chatInput = document.getElementById('chatInput');
-        let chatTypeTitle = document.getElementById('chatTypeTitle');
-        let toggleChatTypeBtn = document.getElementById('toggleChatType');
         
-        let isPublicChat = true; // Toggle between public/private chat
-
         // Show/hide chat overlay
         function toggleChatOverlay() {
             chatOverlay.style.display = chatOverlay.style.display === 'none' ? 'block' : 'none';
@@ -110,27 +109,26 @@
         // Listen for "/" key to open chat overlay
         document.addEventListener('keydown', (e) => {
             if (e.key === '/') {
-                e.preventDefault();  // Prevents typing "/" in the chat
+                e.preventDefault();
                 toggleChatOverlay();
             }
-        });
-
-        // Toggle between public and private chat
-        toggleChatTypeBtn.addEventListener('click', () => {
-            isPublicChat = !isPublicChat;
-            chatTypeTitle.textContent = isPublicChat ? "Minecraft-Style Public Chat" : "Minecraft-Style Private Chat";
-            toggleChatTypeBtn.textContent = isPublicChat ? "Toggle to Private Chat" : "Toggle to Public Chat";
         });
 
         // Send message
         document.getElementById('chatSendBtn').addEventListener('click', () => {
             if (chatInput.value.trim() !== '') {
-                let newMessage = document.createElement('div');
-                newMessage.textContent = isPublicChat ? `[Public] ${chatInput.value}` : `[Private] ${chatInput.value}`;
-                chatMessages.appendChild(newMessage);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                // Send message to server
+                socket.emit('chat message', chatInput.value);
                 chatInput.value = '';
             }
+        });
+
+        // Listen for messages from the server
+        socket.on('chat message', (msg) => {
+            let newMessage = document.createElement('div');
+            newMessage.textContent = msg;
+            chatMessages.appendChild(newMessage);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         });
     </script>
 </body>
