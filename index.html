@@ -76,7 +76,7 @@
 <body>
     <div class="container">
         <h1>Welcome to the Coding Site</h1>
-        <p>Start coding or press <strong>Shift + T</strong> then <strong>C</strong> to open the chat!</p>
+        <p>Start coding or press <strong>/</strong> to open the chat!</p>
     </div>
 
     <!-- Chat Overlay -->
@@ -100,7 +100,6 @@
         let toggleChatTypeBtn = document.getElementById('toggleChatType');
         
         let isPublicChat = true; // Toggle between public/private chat
-        let keySequence = []; // Store key sequence for Shift + T then C
 
         // Show/hide chat overlay
         function toggleChatOverlay() {
@@ -108,16 +107,11 @@
             chatInput.focus();
         }
 
-        // Listen for keydown event to detect the Shift + T + C sequence
+        // Listen for "/" key to open chat overlay
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Shift' || e.key.toLowerCase() === 't' || e.key.toLowerCase() === 'c') {
-                keySequence.push(e.key);
-                if (keySequence.join('') === 'ShiftTC') {
-                    toggleChatOverlay();
-                    keySequence = [];
-                }
-            } else {
-                keySequence = [];
+            if (e.key === '/') {
+                e.preventDefault();  // Prevents typing "/" in the chat
+                toggleChatOverlay();
             }
         });
 
