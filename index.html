@@ -3,23 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Code Site with Minecraft-style Chat</title>
+    <style>
+        /* Basic page style */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            text-align: center;
+        }
+        
+        /* Chat overlay styling */
+        #chatOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #eee;
+            font-family: monospace;
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .chat-box {
+            background: #2c2c2c;
+            border: 2px solid #4a4a4a;
+            border-radius: 5px;
+            padding: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        #chatMessages {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #555;
+            padding: 10px;
+            background-color: #1a1a1a;
+            color: #00ff00;
+        }
+        .chat-input-container {
+            margin-top: 10px;
+            display: flex;
+        }
+        #chatInput {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        #chatSendBtn, #toggleChatType {
+            padding: 10px;
+            background-color: #4a4a4a;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
-    <article>
-        <h2>How to Create a Simple Greeting Function in JavaScript</h2>
-        <p>This function logs a greeting to the console whenever it’s called.</p>
-        
-        <figure>
-            <pre><code>
-    function greet() {
-        console.log("Hello, world!");
+    <div class="container">
+        <h1>Welcome to the Coding Site</h1>
+        <p>Start coding or press <strong>Shift + T</strong> then <strong>C</strong> to open the chat!</p>
+    </div>
 
-    }
-            </code></pre>
-            <figcaption>A simple JavaScript function that logs "Hello, world!" to the console.</figcaption>
-        </figure>
-    </article>
-    
+    <!-- Chat Overlay -->
+    <div id="chatOverlay">
+        <div class="chat-box">
+            <h2 id="chatTypeTitle">Minecraft-Style Public Chat</h2>
+            <div id="chatMessages">Chat messages will appear here...</div>
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" placeholder="Type your message here...">
+                <button id="chatSendBtn">Send</button>
+                <button id="toggleChatType">Toggle to Private Chat</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let chatOverlay = document.getElementById('chatOverlay');
+        let chatMessages = document.getElementById('chatMessages');
+        let chatInput = document.getElementById('chatInput');
+        let chatTypeTitle = document.getElementById('chatTypeTitle');
+        let toggleChatTypeBtn = document.getElementById('toggleChatType');
+        
+        let isPublicChat = true; // Toggle between public/private chat
+        let keySequence = []; // Store key sequence for Shift + T then C
+
+        // Show/hide chat overlay
+        function toggleChatOverlay() {
+            chatOverlay.style.display = chatOverlay.style.display === 'none' ? 'block' : 'none';
+            chatInput.focus();
+        }
+
+        // Listen for keydown event to detect the Shift + T + C sequence
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Shift' || e.key.toLowerCase() === 't' || e.key.toLowerCase() === 'c') {
+                keySequence.push(e.key);
+                if (keySequence.join('') === 'ShiftTC') {
+                    toggleChatOverlay();
+                    keySequence = [];
+                }
+            } else {
+                keySequence = [];
+            }
+        });
+
+        // Toggle between public and private chat
+        toggleChatTypeBtn.addEventListener('click', () => {
+            isPublicChat = !isPublicChat;
+            chatTypeTitle.textContent = isPublicChat ? "Minecraft-Style Public Chat" : "Minecraft-Style Private Chat";
+            toggleChatTypeBtn.textContent = isPublicChat ? "Toggle to Private Chat" : "Toggle to Public Chat";
+        });
+
+        // Send message
+        document.getElementById('chatSendBtn').addEventListener('click', () => {
+            if (chatInput.value.trim() !== '') {
+                let newMessage = document.createElement('div');
+                newMessage.textContent = isPublicChat ? `[Public] ${chatInput.value}` : `[Private] ${chatInput.value}`;
+                chatMessages.appendChild(newMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                chatInput.value = '';
+            }
+        });
+    </script>
 </body>
 </html>
