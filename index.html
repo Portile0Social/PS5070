@@ -1,135 +1,70 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-Time Minecraft-Style Chat</title>
-    <style>
-        /* Basic page style */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 80%;
-            text-align: center;
-        }
-        
-        /* Chat overlay styling */
-        #chatOverlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #eee;
-            font-family: monospace;
-            z-index: 1000;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .chat-box {
-            background: #2c2c2c;
-            border: 2px solid #4a4a4a;
-            border-radius: 5px;
-            padding: 10px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        #chatMessages {
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #555;
-            padding: 10px;
-            background-color: #1a1a1a;
-            color: #00ff00;
-        }
-        .chat-input-container {
-            margin-top: 10px;
-            display: flex;
-        }
-        #chatInput {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            font-family: monospace;
-        }
-        #chatSendBtn, #toggleChatType {
-            padding: 10px;
-            background-color: #4a4a4a;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-family: monospace;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch SSO</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the Coding Site</h1>
-        <p>Start coding or press <strong>/</strong> to open the chat!</p>
-    </div>
+  <!-- Add a place to display the SSO key -->
+  <h1 id="ssoDisplay">Loading...</h1>
 
-    <!-- Chat Overlay -->
-    <div id="chatOverlay">
-        <div class="chat-box">
-            <h2 id="chatTypeTitle">Minecraft-Style Public Chat</h2>
-            <div id="chatMessages">Chat messages will appear here...</div>
-            <div class="chat-input-container">
-                <input type="text" id="chatInput" placeholder="Type your message here...">
-                <button id="chatSendBtn">Send</button>
-            </div>
-        </div>
-    </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io(); // Connect to the server
+    const firebaseConfig = {
+      apiKey: "AIzaSyCeZJXEzkXjw6ippXFlyFac68BpMYH4xyc",
+      authDomain: "jkhugyftdrfc.firebaseapp.com",
+      projectId: "jkhugyftdrfc",
+      storageBucket: "jkhugyftdrfc.appspot.com",
+      messagingSenderId: "995345481907",
+      appId: "1:995345481907:web:ef9d901abe951eba7270c6",
+      measurementId: "G-GZ58WMVL7V",
+    };
 
-        let chatOverlay = document.getElementById('chatOverlay');
-        let chatMessages = document.getElementById('chatMessages');
-        let chatInput = document.getElementById('chatInput');
-        
-        // Show/hide chat overlay
-        function toggleChatOverlay() {
-            chatOverlay.style.display = chatOverlay.style.display === 'none' ? 'block' : 'none';
-            chatInput.focus();
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    // Fetch SSO key from Firestore
+    async function fetchKey() {
+      try {
+        const docRef = doc(db, "vertex_sso", "WF1wzmy3gyRzJCBOC0Dt");
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists) {
+          const data = docSnap.data();
+          return data.vertex_sso; // Return the SSO key
+        } else {
+          console.log("No such document!");
+          return null;
         }
+      } catch (error) {
+        console.error("Error fetching document:", error);
+        return null;
+      }
+    }
 
-        // Listen for "/" key to open chat overlay
-        document.addEventListener('keydown', (e) => {
-            if (e.key === '/') {
-                e.preventDefault();
-                toggleChatOverlay();
-            }
-        });
+    // Display the SSO key in the h1 tag
+    async function displaySSO() {
+      const ssoKey = await fetchKey();
+      const ssoDisplayElement = document.getElementById("ssoDisplay");
 
-        // Send message
-        document.getElementById('chatSendBtn').addEventListener('click', () => {
-            if (chatInput.value.trim() !== '') {
-                // Send message to server
-                socket.emit('chat message', chatInput.value);
-                chatInput.value = '';
-            }
-        });
+      if (ssoKey) {
+        ssoDisplayElement.textContent = ssoKey; // Display the fetched SSO key in the h1
+      } else {
+        ssoDisplayElement.textContent = "SSO not found or error occurred."; // Display error message
+      }
+    }
 
-        // Listen for messages from the server
-        socket.on('chat message', (msg) => {
-            let newMessage = document.createElement('div');
-            newMessage.textContent = msg;
-            chatMessages.appendChild(newMessage);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        });
-    </script>
+    // Call the function to display SSO key
+    displaySSO();
+  </script>
 </body>
 </html>
