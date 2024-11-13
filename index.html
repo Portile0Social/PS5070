@@ -3,23 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fetch SSO</title>
-</head>
-<body>
-  <!-- Add a place to display the SSO key -->
-  <h1 id="ssoDisplay">Loading...</h1>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
-    import {
-      getFirestore,
-      doc,
-      getDoc,<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Public Chat</title>
   <style>
     /* Same styles as before */
@@ -65,58 +48,5 @@
   fetchMessages(); // Initial load
 </script>
 
-</body>
-</html>
-
-    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCeZJXEzkXjw6ippXFlyFac68BpMYH4xyc",
-      authDomain: "jkhugyftdrfc.firebaseapp.com",
-      projectId: "jkhugyftdrfc",
-      storageBucket: "jkhugyftdrfc.appspot.com",
-      messagingSenderId: "995345481907",
-      appId: "1:995345481907:web:ef9d901abe951eba7270c6",
-      measurementId: "G-GZ58WMVL7V",
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
-
-    // Fetch SSO key from Firestore
-    async function fetchKey() {
-      try {
-        const docRef = doc(db, "vertex_sso", "WF1wzmy3gyRzJCBOC0Dt");
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists) {
-          const data = docSnap.data();
-          return data.vertex_sso; // Return the SSO key
-        } else {
-          console.log("No such document!");
-          return null;
-        }
-      } catch (error) {
-        console.error("Error fetching document:", error);
-        return null;
-      }
-    }
-
-    // Display the SSO key in the h1 tag
-    async function displaySSO() {
-      const ssoKey = await fetchKey();
-      const ssoDisplayElement = document.getElementById("ssoDisplay");
-
-      if (ssoKey) {
-        ssoDisplayElement.textContent = ssoKey; // Display the fetched SSO key in the h1
-      } else {
-        ssoDisplayElement.textContent = "SSO not found or error occurred."; // Display error message
-      }
-    }
-
-    // Call the function to display SSO key
-    displaySSO();
-  </script>
 </body>
 </html>
