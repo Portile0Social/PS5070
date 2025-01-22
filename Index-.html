@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ping/Emulate - Site</title>
+    <title>Ping/Emulate</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,7 +70,7 @@
 </head>
 <body>
     <div class="form-container">
-        <h1>Ping Website-/Emulate Website (Works With MC For Modmaking)</h1>
+        <h1>Ping/Connect</h1>
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOVSPLnSnBDsgfYZdw05X-ICtOV9PdH3lyppN0Pb2EYDcAaw/viewform?embedded=true" id="formIframe">
             Loading…
         </iframe>
@@ -85,14 +85,18 @@
         const iframe = document.getElementById('formIframe');
         const loadingContainer = document.getElementById('loadingContainer');
 
-        iframe.addEventListener('load', function() {
-            // Simulate form submission
-            setTimeout(function() {
-                // Change to the loading spinner
+        // Monitor iframe URL changes
+        setInterval(function() {
+            const currentUrl = iframe.contentWindow.location.href;
+            if (currentUrl.includes('viewform')) {
+                // The form is still in the 'viewform' state
+                return;
+            } else if (currentUrl.includes('formResponse')) {
+                // The form has been submitted (redirected to formResponse)
                 loadingContainer.style.display = 'flex';
                 document.querySelector('.form-container').style.display = 'none';
-            }, 1000); // Delay before showing the spinner
-        });
+            }
+        }, 1000); // Check every second
     </script>
 </body>
 </html>
