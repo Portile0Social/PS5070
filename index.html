@@ -1,52 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Public Chat</title>
-  <style>
-    /* Same styles as before */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Text</title>
 </head>
 <body>
-<div class="chat-container">
-  <div id="chatDisplay" class="chat-display"></div>
-  <div class="chat-input">
-    <input type="text" id="messageInput" placeholder="Type a message...">
-    <button onclick="sendMessage()">Send</button>
-  </div>
-</div>
-
-<script>
-  // Fetch messages from the backend
-  async function fetchMessages() {
-    const response = await fetch('http://localhost:5000/messages');
-    const messages = await response.json();
-    const chatDisplay = document.getElementById("chatDisplay");
-    chatDisplay.innerHTML = messages.map(msg => `<div class="message">${msg.text}</div>`).join("");
-    chatDisplay.scrollTop = chatDisplay.scrollHeight; // Auto-scroll to latest message
-  }
-
-  // Send message to backend
-  async function sendMessage() {
-    const messageInput = document.getElementById("messageInput");
-    const message = messageInput.value.trim();
-
-    if (message) {
-      await fetch('http://localhost:5000/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: message }),
-      });
-      messageInput.value = ""; // Clear the input
-      fetchMessages(); // Refresh messages
-    }
-  }
-
-  // Fetch messages every few seconds
-  setInterval(fetchMessages, 3000); // Update every 3 seconds
-  fetchMessages(); // Initial load
-</script>
-
+    <h1>Submit Text to a File</h1>
+    <form action="submit.php" method="post">
+        <label for="textInput">Enter your text:</label><br>
+        <textarea id="textInput" name="textInput" rows="5" cols="30"></textarea><br><br>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
