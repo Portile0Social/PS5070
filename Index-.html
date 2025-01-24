@@ -1,44 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Load/Ping Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form with Loading Spinner</title>
+  <style>
+    /* Spinner styles */
+    #loadingSpinner {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      text-align: center;
+    }
+
+    #loadingSpinner .spinner {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #loadingSpinner p {
+      margin-top: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* Iframe styling */
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ddd;
+    }
+  </style>
 </head>
 <body>
-    <h1>Send Link to Server</h1>
-    <form id="urlForm">
-        <label for="urlInput">Enter URL:</label>
-        <input type="url" id="urlInput" placeholder="https://example.com" required>
-        <button type="submit">Save URL</button>
-    </form>
-    <p id="response"></p>
 
-    <script>
-        const form = document.getElementById('urlForm');
-        const responseEl = document.getElementById('response');
+  <!-- Iframe for the form -->
+  <iframe id="formIframe" src="https://docs.google.com/forms/d/e/1FAIpQLSe4BXBWFhAYSWdO2dq3AtXQVjo9B8ldK8UBJLRi3gRocH3DtA/viewform?embedded=true" width="640" height="1350" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const url = document.getElementById('urlInput').value;
+  <!-- Loading spinner -->
+  <div id="loadingSpinner">
+    <div class="spinner"></div>
+    <p>Loading . . .</p>
+  </div>
 
-            try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbzj-5cn0NOZ9ScvpgZ8ddc2Ci4Dxv0PYFjcJfMUdkP6si3O6VcGDnw8SRTSt6V5v3Mo/exec', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ url })
-                });
+  <script>
+    const iframe = document.getElementById('formIframe');
+    const loadingSpinner = document.getElementById('loadingSpinner');
 
-                const result = await response.json();
-                if (result.success) {
-                    responseEl.textContent = 'URL Sent successfully!';
-                } else {
-                    responseEl.textContent = 'Failed to Send URL.    Code:425-WEB-CNT';
-                }
-            } catch (error) {
-                responseEl.textContent = 'An error occurred while Sending The URL.  Code:426-INT';
-            }
+    // Show spinner when form is submitted
+    iframe.onload = function () {
+      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+      const form = iframeDocument.querySelector('form');
+
+      if (form) {
+        form.addEventListener('submit', function () {
+          loadingSpinner.style.display = 'block';
+
+          // Hide spinner after a delay (simulate form submission)
+          setTimeout(() => {
+            loadingSpinner.style.display = 'none';
+          }, 3000); // Adjust time as needed
         });
-    </script>
+      }
+    };
+  </script>
+
 </body>
 </html>
