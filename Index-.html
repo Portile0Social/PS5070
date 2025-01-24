@@ -3,100 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ping/Emulate</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f9fc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .form-container {
-            background: #ffffff;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 700px;
-            text-align: center;
-            display: block;
-        }
-        .form-container h1 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        iframe {
-            width: 100%;
-            height: 600px;
-            border: none;
-            border-radius: 10px;
-        }
-        .loading-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 9999;
-        }
-        .loading-spinner {
-            border: 16px solid #f3f3f3;
-            border-top: 16px solid #3498db;
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            animation: spin 2s linear infinite;
-        }
-        .loading-text {
-            color: white;
-            margin-top: 20px;
-            font-size: 18px;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+    <title>Ping - Emulate WEBS&GAMES</title>
 </head>
 <body>
-    <div class="form-container">
-        <h1>Ping/Connect</h1>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOVSPLnSnBDsgfYZdw05X-ICtOV9PdH3lyppN0Pb2EYDcAaw/viewform?embedded=true" id="formIframe">
-            Loading…
-        </iframe>
-    </div>
-
-    <div class="loading-container" id="loadingContainer">
-        <div class="loading-spinner"></div>
-        <div class="loading-text">Please wait...</div>
-    </div>
+    <h1>Save Link to Spreadsheet</h1>
+    <form id="urlForm">
+        <label for="urlInput">Enter URL:</label>
+        <input type="url" id="urlInput" placeholder="https://example.com" required>
+        <button type="submit">Save URL</button>
+    </form>
+    <p id="response"></p>
 
     <script>
-        const iframe = document.getElementById('formIframe');
-        const loadingContainer = document.getElementById('loadingContainer');
+        const form = document.getElementById('urlForm');
+        const responseEl = document.getElementById('response');
 
-        // Monitor iframe URL changes
-        setInterval(function() {
-            const currentUrl = iframe.contentWindow.location.href;
-            if (currentUrl.includes('viewform')) {
-                // The form is still in the 'viewform' state
-                return;
-            } else if (currentUrl.includes('formResponse')) {
-                // The form has been submitted (redirected to formResponse)
-                loadingContainer.style.display = 'flex';
-                document.querySelector('.form-container').style.display = 'none';
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const url = document.getElementById('urlInput').value;
+
+            try {
+                const response = await fetch('YOUR_SCRIPT_WEB_APP_URL', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    responseEl.textContent = 'URL saved successfully!';
+                } else {
+                    responseEl.textContent = 'Failed to save URL.';
+                }
+            } catch (error) {
+                responseEl.textContent = 'An error occurred while saving the URL.';
             }
-        }, 1000); // Check every second
+        });
     </script>
 </body>
 </html>
