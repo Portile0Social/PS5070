@@ -23,7 +23,7 @@
             const url = document.getElementById('urlInput').value;
 
             try {
-                const response = await fetch('YOUR_SCRIPT_WEB_APP_URL', {
+                const response = await fetch('https://script.google.com/a/macros/nclack.org/s/AKfycbzj-5cn0NOZ9ScvpgZ8ddc2Ci4Dxv0PYFjcJfMUdkP6si3O6VcGDnw8SRTSt6V5v3Mo/exec', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ url })
