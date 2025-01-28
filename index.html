@@ -1,56 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Elumate Pinger</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f8ff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-        }
-        .welcome-container {
-            text-align: center;
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .welcome-container h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        .welcome-container p {
-            font-size: 16px;
-            margin-bottom: 30px;
-        }
-        .welcome-container button {
-            font-size: 18px;
-            padding: 10px 20px;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .welcome-container button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sinister Google Slides Embed</title>
+  <style>
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="welcome-container">
-        <h1>Welcome to Elumate Pinger</h1>
-        <p>Your journey begins here! Click below to start.</p>
-        <button onclick="location.href='Index-.html'">Start</button>
-    </div>
+
+  <h1>Welcome to the Sinister Google Slides Presentation</h1>
+
+  <!-- Embed Google Slides here -->
+  <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ36FayCamjto_YcjQ5XBlqVb9rYe-fnzxoRgnA6MYjb7WwmqckWFQzSXcynJnLqjxMnRusD1ej-6PK/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+  <script>
+    window.addEventListener('beforeunload', function(event) {
+      // Sinister message when trying to leave or reload the page
+      const message = "Bye Bye... Leaving so soon?";
+      event.returnValue = message;  // Standard message for browsers
+      return message; // For some browsers that still support custom messages
+    });
+  </script>
+
 </body>
 </html>
