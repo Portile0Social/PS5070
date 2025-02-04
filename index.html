@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Christian High - Software Developer</title>
   <style>
-    /* Enable full-page section scroll snapping */
     html {
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
@@ -16,18 +15,15 @@
       background-color: #2e3b8d;
       color: white;
     }
-    /* Each major section fills the viewport and snaps to the start */
     header, section, footer {
       min-height: 100vh;
       scroll-snap-align: start;
       padding: 40px 0;
     }
-    /* Container styling */
     .container {
       width: 80%;
       margin: 0 auto;
     }
-    /* Header styling */
     header {
       background-color: #5f4b8b;
       text-align: center;
@@ -39,15 +35,16 @@
     header p {
       margin: 10px 0;
     }
-    /* About Section */
-    #about {
+    #intro {
       background-color: #2e3b8d;
+      text-align: center;
     }
-    /* Darknet Projects Section (example background) */
-    #darknet {
+    #about {
       background-color: #3a4d8f;
     }
-    /* BJJ Life Content Section with hard-cut gradient */
+    #darknet {
+      background-color: #4b5d9a;
+    }
     #bjj-life-content {
       background: linear-gradient(45deg, 
                   green 0%, 
@@ -57,21 +54,18 @@
                   blue 66.66%, 
                   blue 100%);
     }
-    /* BJJ Life Blue Section – pure blue background */
     #bjj-life-blue {
       background: blue;
+      height: 100vh;
     }
-    /* Contact Section */
     #contact {
       background-color: #2e3b8d;
     }
-    /* Footer styling */
     footer {
       background-color: #5f4b8b;
       text-align: center;
       padding: 20px;
     }
-    /* Fade-in effect for most content */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -81,7 +75,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* Override text color in BJJ Life Content for readability */
     #bjj-life-content h2,
     #bjj-life-content p,
     #bjj-life-content a {
@@ -97,25 +90,37 @@
     </div>
   </header>
 
+  <!-- Introduction Section -->
+  <section id="intro" class="fade-in">
+    <div class="container">
+      <h2>Welcome to My Portfolio</h2>
+      <p>This website showcases my journey as a software developer, my projects focusing on privacy and security, and my passion for Brazilian Jiu-Jitsu.</p>
+      <p>Scroll down to learn more about my skills, projects, and personal interests.</p>
+    </div>
+  </section>
+
   <!-- About Me Section -->
   <section id="about" class="fade-in">
     <div class="container">
       <h2>About Me</h2>
       <p>
-        Hey, I'm Christian High, a software developer with over 4 years of experience in coding.
-        My skills include JavaScript, HTML, CSS, and C#, but my work extends beyond just building apps
-        and websites. I’m deeply involved in privacy, security, and exploring the more hidden corners of the web,
-        particularly the darknet.
+        Hey, I'm Christian High, a dedicated software developer with over 4 years of experience in coding. My technical skills span across JavaScript, HTML, CSS, and C#. I have a strong interest in privacy, security, and the darknet, where I develop tools and applications that prioritize user anonymity and safety.
+      </p>
+      <p>
+        Beyond coding, I’m passionate about martial arts, particularly Brazilian Jiu-Jitsu, which has taught me discipline, focus, and resilience. I believe that the principles I learn on the mat translate directly into my work as a developer—problem-solving, persistence, and continuous learning.
+      </p>
+      <p>
+        I’m always looking for new challenges and opportunities to collaborate on innovative projects that make a difference.
       </p>
     </div>
   </section>
 
-  <!-- Darknet Projects Section (example) -->
+  <!-- Darknet Projects Section -->
   <section id="darknet" class="fade-in">
     <div class="container">
       <h2>Darknet Projects</h2>
       <p>
-        My projects focus on tools for privacy, anonymity, and security on the darknet.
+        My projects focus on developing tools that enhance privacy, ensure anonymity, and improve security on the darknet. From encrypted communication platforms to secure browsing tools, my work is dedicated to protecting user freedoms and rights in the digital space.
       </p>
     </div>
   </section>
@@ -125,24 +130,21 @@
     <div class="container fade-in">
       <h2>My BJJ Life</h2>
       <p>
-        I've been training in Brazilian Jiu-Jitsu (BJJ) for about two years and currently hold a grey belt.
-        As a 14-year-old freshman at high school, I train at 
+        I've been training in Brazilian Jiu-Jitsu (BJJ) for about two years and currently hold a grey belt. As a 14-year-old freshman in high school, I train at 
         <a href="https://btthappyvalley.com/" target="_blank">Brazilian Top Team (BTT) Happy Valley</a>
         under the guidance of head coach Gustavo Bessa.
       </p>
       <h3>About BTT Happy Valley</h3>
       <p>
-        Established in 2009, BTT Happy Valley is a leader in Oregon's martial arts community.
-        In 2017, under head coach Gustavo Bessa—a BJJ black belt and professional MMA fighter—the academy formalized its affiliation with the Brazilian Top Team organization.
+        Established in 2009, BTT Happy Valley is a leader in Oregon's martial arts community. In 2017, under head coach Gustavo Bessa—a BJJ black belt and professional MMA fighter—the academy formalized its affiliation with the Brazilian Top Team organization.
       </p>
       <h3>About Coach Gustavo Bessa</h3>
       <p>
-        Coach Bessa brings decades of experience as a professional MMA fighter and child development expert.
-        He leads a team of coaches focused on self-defense, competition training, and healthy lifestyles.
+        Coach Bessa brings decades of experience as a professional MMA fighter and child development expert. He leads a team of coaches focused on self-defense, competition training, and healthy lifestyles.
       </p>
       <h3>My Training Experience</h3>
       <p>
-        Training under Coach Bessa has been transformative. Balancing high school with BJJ has taught me time management and perseverance.
+        Training under Coach Bessa has been transformative. Balancing high school with BJJ has taught me time management, perseverance, and the importance of continuous improvement.
       </p>
       <p>
         For more info, visit 
@@ -153,7 +155,6 @@
 
   <!-- BJJ Life Blue Section: full viewport blue background -->
   <section id="bjj-life-blue">
-    <!-- Intentionally left blank to display a solid blue background -->
   </section>
 
   <!-- Contact Section -->
@@ -175,7 +176,6 @@
   </footer>
 
   <script>
-    // Intersection Observer for fade-in effect on elements with the "fade-in" class
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
