@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Christian High - Software Developer</title>
   <style>
-    /* Enable scroll snapping */
+    /* Enable full-page section scroll snapping */
     html {
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
@@ -16,12 +16,18 @@
       background-color: #2e3b8d;
       color: white;
     }
-    /* Each major block fills the viewport and snaps into place */
+    /* Each major section fills the viewport and snaps to the start */
     header, section, footer {
       min-height: 100vh;
       scroll-snap-align: start;
+      padding: 40px 0;
     }
-    /* Basic styling for header */
+    /* Container styling */
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+    /* Header styling */
     header {
       background-color: #5f4b8b;
       text-align: center;
@@ -33,18 +39,16 @@
     header p {
       margin: 10px 0;
     }
-    .container {
-      width: 80%;
-      margin: 0 auto;
-      padding: 20px;
+    /* About Section */
+    #about {
+      background-color: #2e3b8d;
     }
-    /* Example section styling */
-    section {
-      padding: 40px 0;
+    /* Darknet Projects Section (example background) */
+    #darknet {
+      background-color: #3a4d8f;
     }
-    /* BJJ Life Content Section with a hard-cut gradient */
+    /* BJJ Life Content Section with hard-cut gradient */
     #bjj-life-content {
-      /* Hard-cut gradient: green, then yellow, then blue */
       background: linear-gradient(45deg, 
                   green 0%, 
                   green 33.33%, 
@@ -53,15 +57,13 @@
                   blue 66.66%, 
                   blue 100%);
     }
-    /* BJJ Life Blue Section: a pure blue background */
+    /* BJJ Life Blue Section – pure blue background */
     #bjj-life-blue {
       background: blue;
     }
-    /* Override text color in the BJJ Life content section for contrast */
-    #bjj-life-content h2,
-    #bjj-life-content p,
-    #bjj-life-content a {
-      color: black;
+    /* Contact Section */
+    #contact {
+      background-color: #2e3b8d;
     }
     /* Footer styling */
     footer {
@@ -69,108 +71,121 @@
       text-align: center;
       padding: 20px;
     }
-    /* Optional: Fade-in effect for sections (except pure blue) */
-    header, section:not(#bjj-life-blue), footer {
+    /* Fade-in effect for most content */
+    .fade-in {
       opacity: 0;
       transform: translateY(20px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transition: opacity 1s ease-out, transform 1s ease-out;
     }
-    header.visible, section:not(#bjj-life-blue).visible, footer.visible {
+    .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+    /* Override text color in BJJ Life Content for readability */
+    #bjj-life-content h2,
+    #bjj-life-content p,
+    #bjj-life-content a {
+      color: black;
     }
   </style>
 </head>
 <body>
-  <header>
+  <header class="fade-in">
     <div class="container">
       <h1>Christian High</h1>
       <p>Software Developer | Darknet Enthusiast | Privacy Advocate | JavaScript | HTML | CSS | C#</p>
     </div>
   </header>
 
-  <!-- About Section -->
-  <section id="about">
+  <!-- About Me Section -->
+  <section id="about" class="fade-in">
     <div class="container">
       <h2>About Me</h2>
       <p>
         Hey, I'm Christian High, a software developer with over 4 years of experience in coding.
         My skills include JavaScript, HTML, CSS, and C#, but my work extends beyond just building apps
-        and websites.
+        and websites. I’m deeply involved in privacy, security, and exploring the more hidden corners of the web,
+        particularly the darknet.
       </p>
     </div>
   </section>
 
-  <!-- Other sections could go here (Darknet Projects, Normal Projects, etc.) -->
-
-  <!-- BJJ Life Content Section with gradient ending in blue -->
-  <section id="bjj-life-content">
+  <!-- Darknet Projects Section (example) -->
+  <section id="darknet" class="fade-in">
     <div class="container">
+      <h2>Darknet Projects</h2>
+      <p>
+        My projects focus on tools for privacy, anonymity, and security on the darknet.
+      </p>
+    </div>
+  </section>
+
+  <!-- BJJ Life Content Section with gradient -->
+  <section id="bjj-life-content">
+    <div class="container fade-in">
       <h2>My BJJ Life</h2>
       <p>
         I've been training in Brazilian Jiu-Jitsu (BJJ) for about two years and currently hold a grey belt.
-        As a 14-year-old freshman at high school, I train at
+        As a 14-year-old freshman at high school, I train at 
         <a href="https://btthappyvalley.com/" target="_blank">Brazilian Top Team (BTT) Happy Valley</a>
         under the guidance of head coach Gustavo Bessa.
       </p>
-      <h3>About Brazilian Top Team Happy Valley</h3>
+      <h3>About BTT Happy Valley</h3>
       <p>
-        Established in 2009, BTT Happy Valley has been a leader in Oregon's martial arts community.
-        In 2017, under the leadership of head coach Gustavo Bessa—a BJJ black belt and professional MMA fighter—
-        the academy formalized its affiliation with the Brazilian Top Team organization.
+        Established in 2009, BTT Happy Valley is a leader in Oregon's martial arts community.
+        In 2017, under head coach Gustavo Bessa—a BJJ black belt and professional MMA fighter—the academy formalized its affiliation with the Brazilian Top Team organization.
       </p>
       <h3>About Coach Gustavo Bessa</h3>
       <p>
         Coach Bessa brings decades of experience as a professional MMA fighter and child development expert.
-        He has assembled an expert team of coaches who focus on real-world self-defense, competition training,
-        and promoting active, healthy lifestyles.
+        He leads a team of coaches focused on self-defense, competition training, and healthy lifestyles.
       </p>
       <h3>My Training Experience</h3>
       <p>
-        Training under Coach Bessa at BTT Happy Valley has been transformative. Balancing high school studies with
-        BJJ training has taught me time management and perseverance.
+        Training under Coach Bessa has been transformative. Balancing high school with BJJ has taught me time management and perseverance.
       </p>
       <p>
-        For more information, visit
+        For more info, visit 
         <a href="https://btthappyvalley.com/" target="_blank">btthappyvalley.com</a>.
       </p>
     </div>
   </section>
 
-  <!-- BJJ Life Blue Section: pure blue background -->
+  <!-- BJJ Life Blue Section: full viewport blue background -->
   <section id="bjj-life-blue">
-    <!-- This section is intentionally left empty to show a full blue screen -->
+    <!-- Intentionally left blank to display a solid blue background -->
   </section>
 
-  <!-- Continue with other sections (Password Check, Contact, etc.) -->
-  <section id="contact">
+  <!-- Contact Section -->
+  <section id="contact" class="fade-in">
     <div class="container">
       <h2>Contact</h2>
       <p>
-        Feel free to reach out to me for collaborations, privacy consultations, or any questions you might have.
+        Feel free to reach out for collaborations, privacy consultations, or any questions you might have.
       </p>
       <p>Email: <a href="mailto:chriztianqigh@gmail.com">chriztianqigh@gmail.com</a></p>
     </div>
   </section>
 
-  <footer>
+  <!-- Footer -->
+  <footer class="fade-in">
     <div class="container">
       <p>&copy; 2025 Christian High</p>
     </div>
   </footer>
 
   <script>
-    // Intersection Observer for fade-in effect
+    // Intersection Observer for fade-in effect on elements with the "fade-in" class
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) {
+        if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2 });
     
-    document.querySelectorAll('header, section:not(#bjj-life-blue), footer').forEach(elem => {
+    document.querySelectorAll('.fade-in').forEach(elem => {
       observer.observe(elem);
     });
   </script>
