@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christian High - Software Developer</title>
   <style>
+    /* Enable scroll snapping for a section-by-section scroll effect */
     html {
-      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
     }
     body {
       font-family: Arial, sans-serif;
@@ -14,6 +15,20 @@
       padding: 0;
       background-color: #2e3b8d;
       color: white;
+    }
+    header, section, footer {
+      scroll-snap-align: start;
+      min-height: 100vh;
+    }
+    /* Standard fade-in effect for most sections */
+    header, section:not(#bjj-life), footer {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    header.visible, section:not(#bjj-life).visible, footer.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     header {
       background-color: #5f4b8b;
@@ -39,13 +54,6 @@
     }
     section {
       padding: 40px 0;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease-out, transform 1s ease-out;
-    }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     h2 {
       color: #f39c12;
@@ -98,35 +106,39 @@
       margin-top: 10px;
       font-family: monospace;
     }
-    /* BJJ Life Section with choppy gradient */
+    /* BJJ Life Section: Choppy gradient with fixed background, no fade */
     #bjj-life {
+      /* Fixed background so the gradient stays until the section is fully out of view */
+      background-attachment: fixed;
       background: linear-gradient(45deg, 
-                                  green 0%, 
-                                  green 33.33%, 
-                                  yellow 33.33%, 
-                                  yellow 66.66%, 
-                                  blue 66.66%, 
-                                  blue 100%);
+                  green 0%, 
+                  green 33.33%, 
+                  yellow 33.33%, 
+                  yellow 66.66%, 
+                  blue 66.66%, 
+                  blue 100%);
       padding: 60px 0;
-      transition: background 0.5s ease;
+      /* Remove the fade animation for the background */
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
-    /* Override text colors for bjj-life section */
-    #bjj-life h2, 
-    #bjj-life p, 
+    /* Override text color for clarity in the BJJ Life section */
+    #bjj-life h2,
+    #bjj-life p,
     #bjj-life a {
       color: black;
     }
   </style>
 </head>
 <body>
-  <header class="fade-in">
+  <header>
     <div class="container">
       <h1>Christian High</h1>
       <p>Software Developer | Darknet Enthusiast | Privacy Advocate | JavaScript | HTML | CSS | C#</p>
     </div>
   </header>
 
-  <section id="about" class="fade-in">
+  <section id="about">
     <div class="container">
       <h2>About Me</h2>
       <p>Hey, I'm Christian High, a software developer with over 4 years of experience in coding. My skills include JavaScript, HTML, CSS, and C#, but my work extends beyond just building apps and websites. I’m deeply involved in privacy, security, and exploring the more hidden corners of the web, particularly the darknet.</p>
@@ -143,7 +155,7 @@
     </div>
   </section>
 
-  <section id="darknet-projects" class="fade-in">
+  <section id="darknet-projects">
     <div class="container">
       <h2>Darknet Projects</h2>
       <p>My work focuses on building tools that enhance privacy, anonymity, and security, especially in the context of the darknet. I’m passionate about ensuring digital safety and developing projects that allow users to browse and communicate anonymously, free from surveillance and data collection. Here are some of the projects I’ve worked on:</p>
@@ -155,7 +167,7 @@
     </div>
   </section>
 
-  <section id="normal-projects" class="fade-in">
+  <section id="normal-projects">
     <div class="container">
       <h2>Normal Projects</h2>
       <p>While I’m deeply involved in privacy and security, I also work on a range of other software development projects. Here are a few that highlight my versatility as a developer:</p>
@@ -168,7 +180,7 @@
     </div>
   </section>
 
-  <section id="password-check" class="fade-in">
+  <section id="password-check">
     <div class="container">
       <div class="password-section">
         <h3>If you're coming from my dark web page, enter the code here:</h3>
@@ -182,7 +194,7 @@
     </div>
   </section>
 
-  <section id="contact" class="fade-in">
+  <section id="contact">
     <div class="container">
       <h2>Contact</h2>
       <p>Feel free to reach out to me for collaborations, privacy consultations, or any questions you might have:</p>
@@ -192,7 +204,7 @@
     </div>
   </section>
 
-  <section id="bjj-life" class="fade-in">
+  <section id="bjj-life">
     <div class="container">
       <h2>My BJJ Life</h2>
       <p>I've been training in Brazilian Jiu-Jitsu (BJJ) for about two years and currently hold a grey belt. As a 14-year-old freshman at high school, I train at <a href="https://btthappyvalley.com/" target="_blank">Brazilian Top Team (BTT) Happy Valley</a> under the guidance of head coach Gustavo Bessa.</p>
@@ -210,7 +222,7 @@
     </div>
   </section>
 
-  <footer class="fade-in">
+  <footer>
     <div class="container">
       <p>&copy; 2025 Christian High</p>
     </div>
@@ -228,7 +240,7 @@
       }
     }
 
-    // Intersection Observer for scroll-triggered animation
+    // Intersection Observer for scroll-triggered fade-in (except for #bjj-life)
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting) {
@@ -238,7 +250,7 @@
       });
     }, { threshold: 0.2 });
 
-    document.querySelectorAll('section, header, footer').forEach((elem) => {
+    document.querySelectorAll('header, section:not(#bjj-life), footer').forEach((elem) => {
       observer.observe(elem);
     });
   </script>
