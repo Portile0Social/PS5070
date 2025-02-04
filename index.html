@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christian High - Software Developer</title>
   <style>
-    /* Enable scroll snapping for a section-by-section scroll effect */
     html {
+      scroll-behavior: smooth;
       scroll-snap-type: y mandatory;
     }
     body {
@@ -20,7 +20,7 @@
       scroll-snap-align: start;
       min-height: 100vh;
     }
-    /* Standard fade-in effect for most sections */
+    /* Standard fade-in effect for sections except for #bjj-life */
     header, section:not(#bjj-life), footer {
       opacity: 0;
       transform: translateY(20px);
@@ -32,9 +32,8 @@
     }
     header {
       background-color: #5f4b8b;
-      color: white;
-      padding: 20px 0;
       text-align: center;
+      padding: 20px 0;
     }
     header h1 {
       margin: 0;
@@ -67,13 +66,11 @@
     }
     footer {
       background-color: #5f4b8b;
-      color: white;
       text-align: center;
       padding: 20px 0;
     }
     .password-section {
       background-color: #4e3c73;
-      color: white;
       padding: 10px;
       border-radius: 5px;
       display: inline-block;
@@ -106,10 +103,8 @@
       margin-top: 10px;
       font-family: monospace;
     }
-    /* BJJ Life Section: Choppy gradient with fixed background, no fade */
+    /* BJJ Life Section: Hard-cut gradient with no fading between colors */
     #bjj-life {
-      /* Fixed background so the gradient stays until the section is fully out of view */
-      background-attachment: fixed;
       background: linear-gradient(45deg, 
                   green 0%, 
                   green 33.33%, 
@@ -118,9 +113,7 @@
                   blue 66.66%, 
                   blue 100%);
       padding: 60px 0;
-      /* Remove the fade animation for the background */
-      opacity: 1 !important;
-      transform: translateY(0) !important;
+      background-attachment: fixed;
     }
     /* Override text color for clarity in the BJJ Life section */
     #bjj-life h2,
@@ -142,85 +135,27 @@
     <div class="container">
       <h2>About Me</h2>
       <p>Hey, I'm Christian High, a software developer with over 4 years of experience in coding. My skills include JavaScript, HTML, CSS, and C#, but my work extends beyond just building apps and websites. I’m deeply involved in privacy, security, and exploring the more hidden corners of the web, particularly the darknet.</p>
-      
-      <h3>End-to-End Encryption Explained</h3>
-      <p>One of my major areas of focus in my projects is ensuring privacy through encryption. A project I worked on involved building a secure communication tool where end-to-end encryption was paramount. Here's a simplified explanation of how end-to-end encryption (E2EE) works in the context of my projects:</p>
-      <ul>
-        <li><strong>Message Encryption:</strong> When a user sends a message, it gets encrypted on their device before being transmitted. This means that even if someone intercepts the message while it's being transmitted, it would be unreadable without the decryption key.</li>
-        <li><strong>Private Key Generation:</strong> Each user in the system has a pair of keys: a private key and a public key. The private key is kept secure and only known to the user. The public key is shared and used by others to encrypt messages they want to send to that user.</li>
-        <li><strong>End-to-End Security:</strong> The key to true end-to-end encryption is that the message can only be decrypted by the recipient’s private key. Even the service provider (which hosts the platform) cannot decrypt the messages because it never has access to the private key.</li>
-        <li><strong>Real-Time Communication:</strong> I ensured that the encryption happened in real time, with seamless user experience. As soon as a message is sent, it’s encrypted, transmitted, and only decrypted when it reaches the recipient.</li>
-      </ul>
-      <p>This means that even if hackers gain access to the server or network, they won't be able to read the encrypted messages unless they also have access to the user's private key.</p>
+      <!-- Additional content here -->
     </div>
   </section>
 
-  <section id="darknet-projects">
-    <div class="container">
-      <h2>Darknet Projects</h2>
-      <p>My work focuses on building tools that enhance privacy, anonymity, and security, especially in the context of the darknet. I’m passionate about ensuring digital safety and developing projects that allow users to browse and communicate anonymously, free from surveillance and data collection. Here are some of the projects I’ve worked on:</p>
-      <ul>
-        <li><strong>Anonymous Communication Tool:</strong> A secure, decentralized messaging platform designed for the darknet, where users can communicate without fear of being tracked. I worked on building end-to-end encryption, making sure that no one—apart from the sender and receiver—could access the messages.</li>
-        <li><strong>Privacy-Oriented Browser Extension:</strong> This tool prevents users from being tracked by malicious third parties on the dark web. I focused on ensuring the extension works seamlessly without compromising performance or privacy.</li>
-        <li><strong>Darknet Marketplace Research:</strong> I analyzed and contributed to the development of secure marketplace platforms that operate on the darknet. The goal was to improve the security of these platforms, ensuring safe transactions and protecting users from fraud and hacking attempts.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="normal-projects">
-    <div class="container">
-      <h2>Normal Projects</h2>
-      <p>While I’m deeply involved in privacy and security, I also work on a range of other software development projects. Here are a few that highlight my versatility as a developer:</p>
-      <ul>
-        <li><strong>Interactive Web Games:</strong> I’ve built several web-based games using JavaScript, HTML, and CSS. These games include features like real-time multiplayer interactions and personalized player experiences. I take a focus on performance optimization to ensure smooth gameplay across devices.</li>
-        <li><strong>Task Management App:</strong> I developed a to-do list app with a clean, user-friendly interface and integrated it with cloud storage so users could sync their tasks across devices. This project allowed me to work with RESTful APIs and learn more about backend integration.</li>
-        <li><strong>Personal Portfolio Website:</strong> This website you're currently looking at is a project I built to showcase my skills and work. It’s built with a focus on responsiveness and performance, with clean, modern design principles guiding every aspect of the development.</li>
-        <li><strong>API Development for Data Retrieval:</strong> I created a public API that allows users to access data on a specific topic. The project required me to work with backend technologies like Node.js, Express, and MongoDB to handle data storage, API endpoints, and user queries efficiently.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="password-check">
-    <div class="container">
-      <div class="password-section">
-        <h3>If you're coming from my dark web page, enter the code here:</h3>
-        <input type="text" id="passwordInput" placeholder="Enter Code...">
-        <button onclick="checkPassword()">Submit</button>
-        <div id="codeSnippet" class="code-snippet">
-          <pre>password = "null"; // No actual code required</pre>
-          <pre>console.log("Access Granted!");</pre>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <h2>Contact</h2>
-      <p>Feel free to reach out to me for collaborations, privacy consultations, or any questions you might have:</p>
-      <ul>
-        <li>Email: <a href="mailto:chriztianqigh@gmail.com">chriztianqigh@gmail.com</a></li>
-      </ul>
-    </div>
-  </section>
+  <!-- Other sections ... -->
 
   <section id="bjj-life">
     <div class="container">
       <h2>My BJJ Life</h2>
       <p>I've been training in Brazilian Jiu-Jitsu (BJJ) for about two years and currently hold a grey belt. As a 14-year-old freshman at high school, I train at <a href="https://btthappyvalley.com/" target="_blank">Brazilian Top Team (BTT) Happy Valley</a> under the guidance of head coach Gustavo Bessa.</p>
-      
       <h3>About Brazilian Top Team Happy Valley</h3>
       <p>Established in 2009, BTT Happy Valley has been a leader in Oregon's martial arts community. In 2017, under the leadership of head coach Gustavo Bessa—a BJJ black belt and professional MMA fighter—the academy formalized its affiliation with the Brazilian Top Team organization. The academy offers a family-friendly atmosphere alongside professional competition training, helping students of all ages grow and excel.</p>
-      
       <h3>About Coach Gustavo Bessa</h3>
       <p>Coach Bessa brings decades of experience as a professional MMA fighter and child development expert. He has assembled an expert team of coaches who focus on real-world self-defense, competition training, and promoting active, healthy lifestyles. No matter your age, skill, or fitness level, they are here to help you reach your goals.</p>
-      
       <h3>My Training Experience</h3>
       <p>Training under Coach Bessa at BTT Happy Valley has been transformative. The emphasis on proper technique, discipline, and continuous improvement has not only enhanced my skills on the mat but also positively impacted other areas of my life. Balancing my high school studies with BJJ training has taught me time management and perseverance. The supportive community and expert instruction make it an ideal environment for anyone looking to pursue Brazilian Jiu-Jitsu.</p>
-      
       <p>For more information about BTT Happy Valley and their programs, you can visit their official website: <a href="https://btthappyvalley.com/" target="_blank">btthappyvalley.com</a></p>
     </div>
   </section>
+
+  <!-- Additional sections like contact, footer, etc. -->
 
   <footer>
     <div class="container">
@@ -229,21 +164,10 @@
   </footer>
 
   <script>
-    function checkPassword() {
-      const password = document.getElementById('passwordInput').value;
-      if (password === 'darkaccess') {
-        document.getElementById('codeSnippet').style.display = 'block';
-      } else if (password === "") {
-        alert("No code required. Just enjoy the site!");
-      } else {
-        alert("Incorrect code. Please try again.");
-      }
-    }
-
     // Intersection Observer for scroll-triggered fade-in (except for #bjj-life)
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) {
+        if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
