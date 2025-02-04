@@ -1,39 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Christian High - Software Developer</title>
   <style>
+    /* Enable scroll snapping */
     html {
-      scroll-behavior: smooth;
       scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
     }
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
       background-color: #2e3b8d;
       color: white;
     }
+    /* Each major block fills the viewport and snaps into place */
     header, section, footer {
-      scroll-snap-align: start;
       min-height: 100vh;
+      scroll-snap-align: start;
     }
-    /* Standard fade-in effect for sections except for #bjj-life */
-    header, section:not(#bjj-life), footer {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease-out, transform 1s ease-out;
-    }
-    header.visible, section:not(#bjj-life).visible, footer.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* Basic styling for header */
     header {
       background-color: #5f4b8b;
       text-align: center;
-      padding: 20px 0;
+      padding: 20px;
     }
     header h1 {
       margin: 0;
@@ -41,70 +33,18 @@
     header p {
       margin: 10px 0;
     }
-    header a {
-      color: #f39c12;
-      text-decoration: none;
-      font-weight: bold;
-    }
     .container {
       width: 80%;
       margin: 0 auto;
-      padding: 20px 0;
+      padding: 20px;
     }
+    /* Example section styling */
     section {
       padding: 40px 0;
     }
-    h2 {
-      color: #f39c12;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    ul li {
-      margin: 10px 0;
-    }
-    footer {
-      background-color: #5f4b8b;
-      text-align: center;
-      padding: 20px 0;
-    }
-    .password-section {
-      background-color: #4e3c73;
-      padding: 10px;
-      border-radius: 5px;
-      display: inline-block;
-      margin-top: 20px;
-    }
-    .password-section input {
-      padding: 5px;
-      margin-top: 10px;
-      width: 200px;
-      background-color: #333;
-      color: white;
-      border: 1px solid #555;
-    }
-    .password-section button {
-      background-color: #f39c12;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .password-section button:hover {
-      background-color: #e67e22;
-    }
-    .code-snippet {
-      display: none;
-      background-color: #333;
-      color: #f39c12;
-      padding: 10px;
-      margin-top: 10px;
-      font-family: monospace;
-    }
-    /* BJJ Life Section: Hard-cut gradient with no fading between colors */
-    #bjj-life {
+    /* BJJ Life Content Section with a hard-cut gradient */
+    #bjj-life-content {
+      /* Hard-cut gradient: green, then yellow, then blue */
       background: linear-gradient(45deg, 
                   green 0%, 
                   green 33.33%, 
@@ -112,14 +52,32 @@
                   yellow 66.66%, 
                   blue 66.66%, 
                   blue 100%);
-      padding: 60px 0;
-      background-attachment: fixed;
     }
-    /* Override text color for clarity in the BJJ Life section */
-    #bjj-life h2,
-    #bjj-life p,
-    #bjj-life a {
+    /* BJJ Life Blue Section: a pure blue background */
+    #bjj-life-blue {
+      background: blue;
+    }
+    /* Override text color in the BJJ Life content section for contrast */
+    #bjj-life-content h2,
+    #bjj-life-content p,
+    #bjj-life-content a {
       color: black;
+    }
+    /* Footer styling */
+    footer {
+      background-color: #5f4b8b;
+      text-align: center;
+      padding: 20px;
+    }
+    /* Optional: Fade-in effect for sections (except pure blue) */
+    header, section:not(#bjj-life-blue), footer {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    header.visible, section:not(#bjj-life-blue).visible, footer.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -131,31 +89,69 @@
     </div>
   </header>
 
+  <!-- About Section -->
   <section id="about">
     <div class="container">
       <h2>About Me</h2>
-      <p>Hey, I'm Christian High, a software developer with over 4 years of experience in coding. My skills include JavaScript, HTML, CSS, and C#, but my work extends beyond just building apps and websites. I’m deeply involved in privacy, security, and exploring the more hidden corners of the web, particularly the darknet.</p>
-      <!-- Additional content here -->
+      <p>
+        Hey, I'm Christian High, a software developer with over 4 years of experience in coding.
+        My skills include JavaScript, HTML, CSS, and C#, but my work extends beyond just building apps
+        and websites.
+      </p>
     </div>
   </section>
 
-  <!-- Other sections ... -->
+  <!-- Other sections could go here (Darknet Projects, Normal Projects, etc.) -->
 
-  <section id="bjj-life">
+  <!-- BJJ Life Content Section with gradient ending in blue -->
+  <section id="bjj-life-content">
     <div class="container">
       <h2>My BJJ Life</h2>
-      <p>I've been training in Brazilian Jiu-Jitsu (BJJ) for about two years and currently hold a grey belt. As a 14-year-old freshman at high school, I train at <a href="https://btthappyvalley.com/" target="_blank">Brazilian Top Team (BTT) Happy Valley</a> under the guidance of head coach Gustavo Bessa.</p>
+      <p>
+        I've been training in Brazilian Jiu-Jitsu (BJJ) for about two years and currently hold a grey belt.
+        As a 14-year-old freshman at high school, I train at
+        <a href="https://btthappyvalley.com/" target="_blank">Brazilian Top Team (BTT) Happy Valley</a>
+        under the guidance of head coach Gustavo Bessa.
+      </p>
       <h3>About Brazilian Top Team Happy Valley</h3>
-      <p>Established in 2009, BTT Happy Valley has been a leader in Oregon's martial arts community. In 2017, under the leadership of head coach Gustavo Bessa—a BJJ black belt and professional MMA fighter—the academy formalized its affiliation with the Brazilian Top Team organization. The academy offers a family-friendly atmosphere alongside professional competition training, helping students of all ages grow and excel.</p>
+      <p>
+        Established in 2009, BTT Happy Valley has been a leader in Oregon's martial arts community.
+        In 2017, under the leadership of head coach Gustavo Bessa—a BJJ black belt and professional MMA fighter—
+        the academy formalized its affiliation with the Brazilian Top Team organization.
+      </p>
       <h3>About Coach Gustavo Bessa</h3>
-      <p>Coach Bessa brings decades of experience as a professional MMA fighter and child development expert. He has assembled an expert team of coaches who focus on real-world self-defense, competition training, and promoting active, healthy lifestyles. No matter your age, skill, or fitness level, they are here to help you reach your goals.</p>
+      <p>
+        Coach Bessa brings decades of experience as a professional MMA fighter and child development expert.
+        He has assembled an expert team of coaches who focus on real-world self-defense, competition training,
+        and promoting active, healthy lifestyles.
+      </p>
       <h3>My Training Experience</h3>
-      <p>Training under Coach Bessa at BTT Happy Valley has been transformative. The emphasis on proper technique, discipline, and continuous improvement has not only enhanced my skills on the mat but also positively impacted other areas of my life. Balancing my high school studies with BJJ training has taught me time management and perseverance. The supportive community and expert instruction make it an ideal environment for anyone looking to pursue Brazilian Jiu-Jitsu.</p>
-      <p>For more information about BTT Happy Valley and their programs, you can visit their official website: <a href="https://btthappyvalley.com/" target="_blank">btthappyvalley.com</a></p>
+      <p>
+        Training under Coach Bessa at BTT Happy Valley has been transformative. Balancing high school studies with
+        BJJ training has taught me time management and perseverance.
+      </p>
+      <p>
+        For more information, visit
+        <a href="https://btthappyvalley.com/" target="_blank">btthappyvalley.com</a>.
+      </p>
     </div>
   </section>
 
-  <!-- Additional sections like contact, footer, etc. -->
+  <!-- BJJ Life Blue Section: pure blue background -->
+  <section id="bjj-life-blue">
+    <!-- This section is intentionally left empty to show a full blue screen -->
+  </section>
+
+  <!-- Continue with other sections (Password Check, Contact, etc.) -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>
+        Feel free to reach out to me for collaborations, privacy consultations, or any questions you might have.
+      </p>
+      <p>Email: <a href="mailto:chriztianqigh@gmail.com">chriztianqigh@gmail.com</a></p>
+    </div>
+  </section>
 
   <footer>
     <div class="container">
@@ -164,17 +160,17 @@
   </footer>
 
   <script>
-    // Intersection Observer for scroll-triggered fade-in (except for #bjj-life)
-    const observer = new IntersectionObserver((entries) => {
+    // Intersection Observer for fade-in effect
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if(entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2 });
-
-    document.querySelectorAll('header, section:not(#bjj-life), footer').forEach((elem) => {
+    
+    document.querySelectorAll('header, section:not(#bjj-life-blue), footer').forEach(elem => {
       observer.observe(elem);
     });
   </script>
