@@ -3,115 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Christian High - Software Developer</title>
+  <title>Christian High - Developer & Privacy Advocate</title>
   <style>
-    html {
-      scroll-behavior: smooth;
+    :root {
+      --primary-bg: #1e1e2e;
+      --secondary-bg: #282a36;
+      --accent: #ffcc00;
+      --text-color: #f8f8f2;
+      --fade-duration: 1s;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
     }
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #2e3b8d;
-      color: white;
-    }
-    header, section, footer {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 0;
-    }
-    .container {
-      width: 70%;
-      max-width: 800px;
-      text-align: center;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      scroll-behavior: smooth;
     }
     header {
-      background-color: #5f4b8b;
+      background: var(--secondary-bg);
+      text-align: center;
+      padding: 50px 20px;
     }
-    #intro { background-color: #2e3b8d; }
-    #about { background-color: #3a4d8f; }
-    #darknet { background-color: #4b5d9a; }
-    #bjj-life-content {
-      background: linear-gradient(45deg, green 0%, green 33.33%, yellow 33.33%, yellow 66.66%, blue 66.66%, blue 100%);
-    }
-    #bjj-life-blue { background: blue; }
-    #contact { background-color: #2e3b8d; }
-    footer {
-      background-color: #5f4b8b;
-    }
-    .fade-in {
+    section {
+      padding: 80px 10%;
+      text-align: center;
+      transition: opacity var(--fade-duration) ease-in-out, transform var(--fade-duration) ease-in-out;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease-out, transform 1s ease-out;
+      transform: translateY(30px);
     }
-    .fade-in.visible {
+    .visible {
       opacity: 1;
       transform: translateY(0);
     }
-    #bjj-life-content h2, #bjj-life-content p, #bjj-life-content a {
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: var(--accent);
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .bjj-section {
+      background: linear-gradient(45deg, #008000, #ffff00, #0000ff);
+      padding: 60px;
+      border-radius: 10px;
       color: black;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: var(--secondary-bg);
     }
   </style>
 </head>
 <body>
-  <header class="fade-in">
-    <div class="container">
-      <h1>Christian High</h1>
-      <p>Software Developer | Darknet Enthusiast | Privacy Advocate | JavaScript | HTML | CSS | C#</p>
-    </div>
+  <header>
+    <h1>Christian High</h1>
+    <p>Software Developer | Privacy Advocate | BJJ Practitioner</p>
   </header>
 
   <section id="intro" class="fade-in">
     <div class="container">
-      <h2>Welcome to My Portfolio</h2>
-      <p>This website showcases my journey as a software developer, my projects focusing on privacy and security, and my passion for Brazilian Jiu-Jitsu.</p>
-      <p>Scroll down to learn more about my skills, projects, and personal interests.</p>
+      <h2>Welcome</h2>
+      <p>Explore my work in software development, cybersecurity, and Brazilian Jiu-Jitsu.</p>
     </div>
   </section>
 
   <section id="about" class="fade-in">
     <div class="container">
       <h2>About Me</h2>
-      <p>Hey, I'm Christian High, a dedicated software developer with over 4 years of experience in coding. My skills span JavaScript, HTML, CSS, and C#. I focus on privacy, security, and the darknet, developing tools prioritizing user anonymity and safety.</p>
-      <p>Beyond coding, I’m passionate about Brazilian Jiu-Jitsu, which teaches discipline, focus, and resilience—qualities I bring into my development work.</p>
+      <p>I'm a software developer with expertise in JavaScript, C#, and web security. Passionate about online privacy and ethical hacking.</p>
     </div>
   </section>
 
   <section id="darknet" class="fade-in">
     <div class="container">
-      <h2>Darknet Projects</h2>
-      <p>I develop tools enhancing privacy, ensuring anonymity, and improving security on the darknet—from encrypted communication platforms to secure browsing tools.</p>
+      <h2>Darknet & Privacy Projects</h2>
+      <p>Building privacy-first tools for encrypted communication and anonymous browsing.</p>
     </div>
   </section>
 
-  <section id="bjj-life-content" class="fade-in">
+  <section class="bjj-section fade-in">
     <div class="container">
-      <h2>My BJJ Life</h2>
-      <p>I've trained in Brazilian Jiu-Jitsu for two years and hold a grey belt. As a 14-year-old freshman, I train at <a href="https://btthappyvalley.com/" target="_blank">BTT Happy Valley</a> under Coach Gustavo Bessa.</p>
-      <h3>About BTT Happy Valley</h3>
-      <p>Founded in 2009, BTT Happy Valley is a leader in Oregon's martial arts scene. In 2017, it formalized its affiliation with the Brazilian Top Team under Coach Bessa, a BJJ black belt and professional MMA fighter.</p>
-      <h3>About Coach Gustavo Bessa</h3>
-      <p>Coach Bessa brings decades of MMA and child development experience, leading a team focused on self-defense, competition, and healthy living.</p>
-      <h3>My Training Experience</h3>
-      <p>Training under Coach Bessa has been transformative, teaching me time management, perseverance, and continuous improvement.</p>
+      <h2>Brazilian Jiu-Jitsu</h2>
+      <p>Training at <a href="https://btthappyvalley.com/" target="_blank">BTT Happy Valley</a> under Coach Gustavo Bessa.</p>
     </div>
   </section>
-
-  <section id="bjj-life-blue"></section>
 
   <section id="contact" class="fade-in">
     <div class="container">
       <h2>Contact</h2>
-      <p>Reach out for collaborations, privacy consultations, or questions.</p>
       <p>Email: <a href="mailto:highchr@nclack.org">highchr@nclack.org</a></p>
     </div>
   </section>
 
-  <footer class="fade-in">
-    <div class="container">
-      <p>&copy; 2025 Christian High</p>
-    </div>
+  <footer>
+    <p>&copy; 2025 Christian High</p>
   </footer>
 
   <script>
@@ -122,10 +119,10 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.3 });
 
-    document.querySelectorAll('.fade-in').forEach(elem => {
-      observer.observe(elem);
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
     });
   </script>
 </body>
