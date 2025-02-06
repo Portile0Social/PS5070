@@ -6,7 +6,6 @@
   <title>Christian High - Software Developer</title>
   <style>
     html {
-      scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
     }
     body {
@@ -17,54 +16,29 @@
     }
     header, section, footer {
       min-height: 100vh;
-      scroll-snap-align: start;
-      padding: 40px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 0;
     }
     .container {
-      width: 80%;
-      margin: 0 auto;
+      width: 70%;
+      max-width: 800px;
+      text-align: center;
     }
     header {
       background-color: #5f4b8b;
-      text-align: center;
-      padding: 20px;
     }
-    header h1 {
-      margin: 0;
-    }
-    header p {
-      margin: 10px 0;
-    }
-    #intro {
-      background-color: #2e3b8d;
-      text-align: center;
-    }
-    #about {
-      background-color: #3a4d8f;
-    }
-    #darknet {
-      background-color: #4b5d9a;
-    }
+    #intro { background-color: #2e3b8d; }
+    #about { background-color: #3a4d8f; }
+    #darknet { background-color: #4b5d9a; }
     #bjj-life-content {
-      background: linear-gradient(45deg, 
-                  green 0%, 
-                  green 33.33%, 
-                  yellow 33.33%, 
-                  yellow 66.66%, 
-                  blue 66.66%, 
-                  blue 100%);
+      background: linear-gradient(45deg, green 0%, green 33.33%, yellow 33.33%, yellow 66.66%, blue 66.66%, blue 100%);
     }
-    #bjj-life-blue {
-      background: blue;
-      height: 100vh;
-    }
-    #contact {
-      background-color: #2e3b8d;
-    }
+    #bjj-life-blue { background: blue; }
+    #contact { background-color: #2e3b8d; }
     footer {
       background-color: #5f4b8b;
-      text-align: center;
-      padding: 20px;
     }
     .fade-in {
       opacity: 0;
@@ -75,9 +49,7 @@
       opacity: 1;
       transform: translateY(0);
     }
-    #bjj-life-content h2,
-    #bjj-life-content p,
-    #bjj-life-content a {
+    #bjj-life-content h2, #bjj-life-content p, #bjj-life-content a {
       color: black;
     }
   </style>
@@ -101,30 +73,28 @@
   <section id="about" class="fade-in">
     <div class="container">
       <h2>About Me</h2>
-      <p>Hey, I'm Christian High, a dedicated software developer with over 4 years of experience in coding. My technical skills span across JavaScript, HTML, CSS, and C#. I have a strong interest in privacy, security, and the darknet, where I develop tools and applications that prioritize user anonymity and safety.</p>
-      <p>Beyond coding, I’m passionate about martial arts, particularly Brazilian Jiu-Jitsu, which has taught me discipline, focus, and resilience. I believe that the principles I learn on the mat translate directly into my work as a developer—problem-solving, persistence, and continuous learning.</p>
-      <p>I’m always looking for new challenges and opportunities to collaborate on innovative projects that make a difference.</p>
+      <p>Hey, I'm Christian High, a dedicated software developer with over 4 years of experience in coding. My skills span JavaScript, HTML, CSS, and C#. I focus on privacy, security, and the darknet, developing tools prioritizing user anonymity and safety.</p>
+      <p>Beyond coding, I’m passionate about Brazilian Jiu-Jitsu, which teaches discipline, focus, and resilience—qualities I bring into my development work.</p>
     </div>
   </section>
 
   <section id="darknet" class="fade-in">
     <div class="container">
       <h2>Darknet Projects</h2>
-      <p>My projects focus on developing tools that enhance privacy, ensure anonymity, and improve security on the darknet. From encrypted communication platforms to secure browsing tools, my work is dedicated to protecting user freedoms and rights in the digital space.</p>
+      <p>I develop tools enhancing privacy, ensuring anonymity, and improving security on the darknet—from encrypted communication platforms to secure browsing tools.</p>
     </div>
   </section>
 
-  <section id="bjj-life-content">
-    <div class="container fade-in">
+  <section id="bjj-life-content" class="fade-in">
+    <div class="container">
       <h2>My BJJ Life</h2>
-      <p>I've been training in Brazilian Jiu-Jitsu (BJJ) for about two years and currently hold a grey belt. As a 14-year-old freshman in high school, I train at <a href="https://btthappyvalley.com/" target="_blank">Brazilian Top Team (BTT) Happy Valley</a> under the guidance of head coach Gustavo Bessa.</p>
+      <p>I've trained in Brazilian Jiu-Jitsu for two years and hold a grey belt. As a 14-year-old freshman, I train at <a href="https://btthappyvalley.com/" target="_blank">BTT Happy Valley</a> under Coach Gustavo Bessa.</p>
       <h3>About BTT Happy Valley</h3>
-      <p>Established in 2009, BTT Happy Valley is a leader in Oregon's martial arts community. In 2017, under head coach Gustavo Bessa—a BJJ black belt and professional MMA fighter—the academy formalized its affiliation with the Brazilian Top Team organization.</p>
+      <p>Founded in 2009, BTT Happy Valley is a leader in Oregon's martial arts scene. In 2017, it formalized its affiliation with the Brazilian Top Team under Coach Bessa, a BJJ black belt and professional MMA fighter.</p>
       <h3>About Coach Gustavo Bessa</h3>
-      <p>Coach Bessa brings decades of experience as a professional MMA fighter and child development expert. He leads a team of coaches focused on self-defense, competition training, and healthy lifestyles.</p>
+      <p>Coach Bessa brings decades of MMA and child development experience, leading a team focused on self-defense, competition, and healthy living.</p>
       <h3>My Training Experience</h3>
-      <p>Training under Coach Bessa has been transformative. Balancing high school with BJJ has taught me time management, perseverance, and the importance of continuous improvement.</p>
-      <p>For more info, visit <a href="https://btthappyvalley.com/" target="_blank">btthappyvalley.com</a>.</p>
+      <p>Training under Coach Bessa has been transformative, teaching me time management, perseverance, and continuous improvement.</p>
     </div>
   </section>
 
@@ -133,7 +103,7 @@
   <section id="contact" class="fade-in">
     <div class="container">
       <h2>Contact</h2>
-      <p>Feel free to reach out for collaborations, privacy consultations, or any questions you might have.</p>
+      <p>Reach out for collaborations, privacy consultations, or questions.</p>
       <p>Email: <a href="mailto:highchr@nclack.org">highchr@nclack.org</a></p>
     </div>
   </section>
@@ -153,7 +123,7 @@
         }
       });
     }, { threshold: 0.2 });
-    
+
     document.querySelectorAll('.fade-in').forEach(elem => {
       observer.observe(elem);
     });
