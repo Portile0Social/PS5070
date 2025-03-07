@@ -47,8 +47,14 @@
             padding: 20px;
         }
 
+        /* Section styles */
         section {
             margin-bottom: 40px;
+            display: none; /* Initially hide all sections */
+        }
+
+        section.active {
+            display: block; /* Show the active section */
         }
 
         section h2 {
@@ -122,7 +128,6 @@
             background-color: #555;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.31.1/min/vs/loader.js"></script>
 </head>
 <body>
 
@@ -135,14 +140,24 @@
 
     <!-- Navigation Menu -->
     <div class="nav-menu">
-        <a href="#games">Games</a>
-        <a href="#chat">Chat</a>
-        <a href="#suggestions">Suggestions</a>
-        <a href="#editor">HTML Editor</a>
+        <a href="#front-page" onclick="showSection('front-page')">Home</a>
+        <a href="#games" onclick="showSection('games')">Games</a>
+        <a href="#chat" onclick="showSection('chat')">Chat</a>
+        <a href="#suggestions" onclick="showSection('suggestions')">Suggestions</a>
+        <a href="#editor" onclick="showSection('editor')">HTML Editor</a>
     </div>
 
     <!-- Main Content -->
     <main>
+
+        <!-- Front Page Section (initial page) -->
+        <section id="front-page" class="active">
+            <h2>Welcome to Portile0Social</h2>
+            <p>Your go-to place for games, chatting, suggestions, and more!</p>
+            <p>Choose an option from the menu to get started.</p>
+        </section>
+
+        <!-- Games Section -->
         <section id="games">
             <h2>Games Section</h2>
             <p>Explore and enjoy various games. More coming soon!</p>
@@ -151,6 +166,7 @@
             </div>
         </section>
 
+        <!-- Chat Section -->
         <section id="chat">
             <h2>Chat Section</h2>
             <div class="section-content chat-box">
@@ -160,6 +176,7 @@
             </div>
         </section>
 
+        <!-- Suggestions Section -->
         <section id="suggestions">
             <h2>Suggestions Section</h2>
             <p>Your feedback matters! Share your thoughts with us:</p>
@@ -169,11 +186,13 @@
             </div>
         </section>
 
+        <!-- HTML Editor Section -->
         <section id="editor">
             <h2>HTML Editor</h2>
             <p>Write and run your HTML, CSS, and JavaScript code here:</p>
             <div class="editor-container" id="editor"></div>
         </section>
+
     </main>
 
     <!-- Footer Section -->
@@ -183,22 +202,20 @@
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Smooth scroll for anchor links
-            const links = document.querySelectorAll('.nav-menu a');
-            links.forEach(link => {
-                link.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    const targetId = link.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                });
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
             });
 
-            // Initialize Monaco Editor
+            // Show the selected section
+            const activeSection = document.getElementById(sectionId);
+            activeSection.classList.add('active');
+        }
+
+        // Initialize Monaco Editor for the HTML editor section
+        document.addEventListener("DOMContentLoaded", function () {
             require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.31.1/min/vs' } });
             require(['vs/editor/editor.main'], function () {
                 monaco.editor.create(document.getElementById('editor'), {
