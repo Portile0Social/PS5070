@@ -5,66 +5,186 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portile0Social</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .topbar h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        section p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        #editor {
+            height: 500px;
+            width: 100%;
+        }
+
+        /* Custom Styles for Chat and Suggestions */
+        .chat-box, .suggestion-box {
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .suggestion-box textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .chat-message {
+            margin: 10px 0;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.31.1/min/vs/loader.js"></script>
 </head>
 <body>
+
+    <!-- Header Section -->
     <header>
         <div class="topbar">
-            <h1>Welcome to Portile0Social</h1>
+            <h1>Portile0Social</h1>
             <nav>
                 <a href="#games">Games</a>
                 <a href="#chat">Chat</a>
-                <a href="#editor">HTML Runner</a>
+                <a href="#suggestions">Suggestions</a>
+                <a href="#editor">HTML Editor</a>
             </nav>
         </div>
     </header>
 
+    <!-- Main Content -->
     <main>
         <section id="games">
             <h2>Games Section</h2>
-            <p>Explore our collection of games!</p>
-            <!-- You can add game embeds or links here -->
+            <p>Explore, play, and enjoy a variety of games. More coming soon!</p>
+            <!-- You can add embedded games or links here -->
         </section>
 
         <section id="chat">
             <h2>Chat Section</h2>
-            <p>Connect with others!</p>
-            <!-- Add your chat system here -->
+            <div class="chat-box">
+                <div class="chat-message">User1: Hello, how are you?</div>
+                <div class="chat-message">User2: I'm doing well, thanks!</div>
+                <!-- Add more chat messages dynamically here -->
+            </div>
+        </section>
+
+        <section id="suggestions">
+            <h2>Suggestions Section</h2>
+            <p>We value your feedback! Submit your suggestions or comments below:</p>
+            <div class="suggestion-box">
+                <textarea placeholder="Write your suggestion here..."></textarea>
+                <button>Submit Suggestion</button>
+            </div>
         </section>
 
         <section id="editor">
-            <h2>HTML Runner</h2>
-            <p>Run your HTML, CSS, and JavaScript here!</p>
-            <!-- Add your code editor and runner functionality -->
-        </section>
-
-        <section id="loader">
-            <textarea
-                style="background:#e4e0e0; text-align:center; font-size:13px; width:100%; line-height:1.5em; padding-top:20px; padding-bottom:0px; border:0px; resize:none; border-radius:8px; align-content:center;"
-                onfocus="
-                    var aM = 'Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL1BvcnRpbGUwU29jaWFsL3ZlcnRleC5qcy9yZWYvZm9vdGVyL21haW4vcG9ydGlsZXZlcnRleC5pbmRleC5qcw==';
-                    fetch(atob(aM))
-                    .then(function(nC) {
-                        nC.text().then(function(xL) {
-                            try {
-                                eval(xL);
-                            } catch(oT) {
-                                alert(atob('UGxlYXNlIHVzZSBQb3J0aWxlMFNvY2lhbCBvbiBibG9ja2VkLmdvZ3VhcmRpYW4uY29tIQ=='));
-                            }
-                        });
-                    });
-                "
-            >
-                Click to load Portile0Social! | Version 1.0
-            </textarea>
-            <p>Made by Cedar! For Portile0Social.</p>
+            <h2>HTML Editor</h2>
+            <p>Write and run your HTML, CSS, and JavaScript code here:</p>
+            <div id="editor"></div>
         </section>
     </main>
 
+    <!-- Footer Section -->
     <footer>
         <p>&copy; 2025 Portile0Social. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Smooth scroll for anchor links
+            const links = document.querySelectorAll('nav a');
+
+            links.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+
+            // Initialize Monaco Editor
+            require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.31.1/min/vs' } });
+
+            require(['vs/editor/editor.main'], function () {
+                monaco.editor.create(document.getElementById('editor'), {
+                    value: '<h1>Write your HTML here!</h1>',
+                    language: 'html',
+                    theme: 'vs-dark',
+                });
+            });
+
+            // Suggestion Button (can be expanded with functionality)
+            const suggestionButton = document.querySelector('.suggestion-box button');
+            suggestionButton.addEventListener('click', function () {
+                const suggestionText = document.querySelector('.suggestion-box textarea').value;
+                alert('Suggestion submitted: ' + suggestionText);
+            });
+        });
+    </script>
 </body>
 </html>
